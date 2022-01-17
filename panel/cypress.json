@@ -1,0 +1,8 @@
+{
+  "fileServerFolder": "./public/assets",
+  "component": {
+    "fileServerFolder": "public",
+    "componentFolder": "src/atomic",
+    "testFiles": "**/e2e.spec.ts"
+  }
+}

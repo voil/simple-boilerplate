@@ -1,0 +1,115 @@
+.ButtonAtom
+  width: 100%
+  display: flex
+  padding: 10px 0
+  color: $white-color
+  position: relative
+  font-size: 0.875rem
+  align-items: center
+  border-radius: .2rem
+  justify-content: center
+  grid-column-gap: 0.25rem
+  transition: background 0.4s ease, color 0.4s ease
+  
+  svg
+    transition: fill 0.4s ease
+    fill: $white-color !important
+
+  &--primary
+    cursor: pointer
+    font-weight: 300
+    background: $primary-main-color
+    border: 0.0625rem solid darken($primary-main-color, 10%)
+
+    &:hover
+      background: lighten($primary-main-color, 10%)
+        
+    &:active
+      background: darken($primary-main-color, 10%)
+
+  &--default
+    cursor: pointer
+    font-weight: 300
+    color: $primary-text-color
+    background: $primary-default-color
+    border: 0.0625rem solid darken($primary-default-color, 10%)
+
+    svg
+      fill: $primary-text-color !important
+
+    &:hover
+      color: $white-color !important
+      background: lighten($primary-main-color, 10%)
+
+      svg
+        fill: $white-color !important
+
+        
+    &:active
+      background: darken($primary-main-color, 10%)
+
+  &--info
+    cursor: pointer
+    font-weight: 300
+    background: $primary-info-color
+    border: 0.0625rem solid darken($primary-info-color, 10%)
+
+    &:hover
+      color: $white-color
+      background: lighten($primary-info-color, 10%)
+
+      svg
+        fill: $white-color !important
+
+        
+    &:active
+      background: darken($primary-info-color, 10%)
+
+  &--warning
+    cursor: pointer
+    font-weight: 300
+    background: $primary-warning-color
+    border: 0.0625rem solid darken($primary-warning-color, 10%)
+
+    &:hover
+      color: $white-color
+      background: lighten($primary-warning-color, 10%)
+        
+      svg
+        fill: $white-color !important
+
+    &:active
+      background: darken($primary-warning-color, 10%)
+
+  &--error
+    cursor: pointer
+    font-weight: 300
+    background: $primary-error-color
+    border: 0.0625rem solid darken($primary-error-color, 10%)
+
+    &:hover
+      color: $white-color
+      background: lighten($primary-error-color, 10%)
+        
+      svg
+        fill: $white-color !important
+
+    &:active
+      background: darken($primary-error-color, 10%)
+
+  &--disabled
+    opacity: 0.5
+    font-weight: 300
+    cursor: not-allowed
+    color: $primary-text-color
+    background: $primary-disabled-color
+    border: 0.0625rem solid darken($primary-disabled-color, 10%)
+
+    svg  
+      fill: $primary-text-color !important
+
+
+  &__icon
+    width: 1rem
+    height: 1rem
+    display: inline-block
