@@ -1,0 +1,51 @@
+.CardAtom
+  width: 100%
+  border-radius: .2rem
+  border: 1px solid $primary-disabled-color
+  box-shadow: 0 0.3125rem 0.625rem -0.3125rem rgb(0 0 0 / 50%)
+
+  &--primary
+    border-left-width: 0.375rem
+    border-left-color: $primary-main-color
+
+  &--error
+    border-left-width: 0.375rem
+    border-left-color: $primary-error-color
+
+  &--info
+    border-left-width: 0.375rem
+    border-left-color: $primary-info-color
+
+  &--warning
+    border-left-width: 0.375rem
+    border-left-color: $primary-warning-color
+
+  &--default
+    border-left-width: 0.375rem
+    border-left-color: $primary-disabled-color
+
+  &__content
+    padding: 1.25rem
+    color: $primary-text-color
+
+  &__header
+    display: flex
+    flex-direction: column
+    justify-content: center
+    grid-row-gap: 0.3125rem
+    padding: 0.625rem 1.25rem
+    border-bottom: 0.0625rem solid $primary-disabled-color
+
+  &__title
+    margin: 0
+    font-weight: 600
+    font-size: 1.25rem
+    color: $primary-text-color
+
+  &__description
+    margin: 0
+    padding: 0
+    font-weight: 300
+    line-height: 140%
+    font-size: 0.875rem
+    color: $primary-text-color
