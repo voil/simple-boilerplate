@@ -1,0 +1,46 @@
+.TextareaAtom
+  width: 100%
+  position: relative
+  align-items: center
+  border-radius: 0.25rem
+  box-sizing: border-box
+  background: $white-color
+  transition: all 0.4s ease
+
+  &--default
+    border: 0.0625rem solid #d8e2ef
+    
+    &:hover
+      border: 1px solid lighten($primary-main-color, 30%)
+
+  &--success
+    border: 0.0625rem solid $primary-success-color
+    
+    &:hover
+      border: 1px solid lighten($primary-success-color, 30%)
+
+  &--error
+    border: 0.0625rem solid $primary-error-color
+    
+    &:hover
+      border: 1px solid lighten($primary-error-color, 30%)
+
+  &--disabled
+    cursor: not-allowed
+    border: 0.0625rem solid $primary-disabled-color
+
+    .TextareaAtom__input
+      cursor: not-allowed
+
+  &__input
+    width: 100%
+    border: none
+    resize: none
+    outline: none
+    background: none
+    font-weight: 300
+    padding: 0.625rem
+    font-size: 0.875rem
+    border-radius: 0.25rem
+    box-sizing: border-box
+    color: $primary-text-color
