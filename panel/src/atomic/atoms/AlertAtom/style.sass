@@ -1,0 +1,42 @@
+.AlertAtom
+  display: flex
+  padding: 1.25rem
+  border-style: solid
+  border-radius: .2rem
+  flex-direction: column
+  justify-content: center
+  grid-row-gap: 0.3125rem
+  border-width: 0.0625rem
+  color: $primary-text-color
+
+  &__title
+    margin: 0
+    font-weight: 600
+    font-size: 1.25rem
+
+  &__description
+    margin: 0
+    padding: 0
+    font-weight: 300
+    line-height: 140%
+    font-size: 0.875rem
+
+  &--success
+    border-color: $primary-success-color
+    color: darken($primary-success-color, 20%)
+    background: lighten($primary-success-color, 45%)
+
+  &--error
+    border-color: $primary-error-color
+    color: darken($primary-error-color, 20%)
+    background: lighten($primary-error-color, 40%)
+
+  &--info
+    border-color: $primary-info-color
+    color: darken($primary-info-color, 20%)
+    background: lighten($primary-info-color, 40%)
+
+  &--warning
+    border-color: $primary-warning-color
+    color: darken($primary-warning-color, 20%)
+    background: lighten($primary-warning-color, 45%)
