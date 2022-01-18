@@ -15,7 +15,9 @@ import CardAtomComponent from './index.vue';
  * @type ComponentPropsType
  */
 type ComponentPropsType = {
-  buttonType: string;
+  cardType: string;
+  cardTitle: string;
+  cardDescription: string;
 };
 
 

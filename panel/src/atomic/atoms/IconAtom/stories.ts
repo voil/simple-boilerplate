@@ -29,7 +29,7 @@ export default {
     },
     color: {
       name: 'color',
-      description: 'Prop for color title.',
+      description: 'Prop for color icon.',
       control: { type: 'color' }
     },
   },
