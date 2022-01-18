@@ -37,6 +37,7 @@ export default {
     },
   },
   parameters: {
+    jest: ['dividerAtom.spec.ts'],
     docs: {
       description: {
         component: 'Divider atom component.',

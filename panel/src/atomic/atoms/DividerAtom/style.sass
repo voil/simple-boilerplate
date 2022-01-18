@@ -1,4 +1,29 @@
 .DividerAtom
+  display: flex
   font-weight: 300
+  text-align: center
   font-size: 0.875rem
+  align-items: center
   color: $primary-text-color
+
+  &--vertical
+    width: 0.0625rem
+    padding: 0 0.5rem
+
+  &--color
+    color: var(--color-fill)
+
+  &__line
+    width: 100%
+    height: 0.0625rem
+    background: lighten($primary-text-color, 60%)
+
+    &--color
+      background: var(--color-fill)
+
+    &--vertical
+      height: 1.25rem
+      width: 0.0625rem
+
+  &__content
+    width: 100%
