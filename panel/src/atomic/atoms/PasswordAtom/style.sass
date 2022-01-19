@@ -1,0 +1,95 @@
+.PasswordAtom
+  width: 100%
+  display: flex
+  position: relative
+  align-items: center
+  border-radius: 0.25rem
+  box-sizing: border-box
+  background: $white-color
+  transition: all 0.4s ease
+
+  &--default
+    border: 0.0625rem solid #d8e2ef
+
+    .PasswordAtom__icon, .PasswordAtom__eye
+      background: $primary-disabled-color
+
+    .PasswordAtom__eye
+      cursor: pointer
+    
+    &:hover
+      border: 1px solid lighten($primary-main-color, 30%)
+
+      .PasswordAtom__icon, .PasswordAtom__eye
+        background: $primary-main-color
+
+  &--success
+    border: 0.0625rem solid $primary-success-color
+
+    .PasswordAtom__icon, .PasswordAtom__eye
+      background: $primary-success-color
+
+    .PasswordAtom__eye
+      cursor: pointer
+    
+    &:hover
+      border: 1px solid lighten($primary-success-color, 30%)
+
+      .PasswordAtom__icon, .PasswordAtom__eye
+        background: lighten($primary-success-color, 30%)
+
+  &--error
+    border: 0.0625rem solid $primary-error-color
+
+    .PasswordAtom__icon, .PasswordAtom__eye
+      background: $primary-error-color
+
+    .PasswordAtom__eye
+      cursor: pointer
+    
+    &:hover
+      border: 1px solid lighten($primary-error-color, 30%)
+
+      .PasswordAtom__icon, .PasswordAtom__eye
+        background: lighten($primary-error-color, 30%)
+
+  &--disabled
+    cursor: not-allowed
+    border: 0.0625rem solid $primary-disabled-color
+
+    .PasswordAtom__icon, .PasswordAtom__eye
+      background: $primary-disabled-color
+
+    .PasswordAtom__eye, .PasswordAtom__input
+      cursor: not-allowed
+
+
+  &__input
+    width: 100%
+    border: none
+    outline: none
+    background: none
+    font-weight: 300
+    padding: 0.625rem
+    box-sizing: border-box
+    border-radius: 0.25rem
+    color: $primary-text-color
+
+  &__eye
+    top: 0
+    bottom: 0
+    left: auto
+    width: 2.5rem
+    display: flex
+    right: 0.0625rem
+    margin: 1px auto
+    position: absolute
+    align-items: center
+    justify-content: center
+    transition: all 0.4s ease
+    border-radius: 0 0.1875rem 0.1875rem 0
+
+    svg
+      width: 1.25rem
+      height: 1.25rem
+      fill: $white-color
