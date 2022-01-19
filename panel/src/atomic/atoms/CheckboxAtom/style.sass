@@ -1,0 +1,95 @@
+.CheckboxAtom
+  display: block
+  width: 1.25rem
+  cursor: pointer
+  height: 1.25rem
+  user-select: none
+  position: relative
+  -ms-user-select: none
+  -moz-user-select: none
+  -webkit-user-select: none
+
+  &:hover
+    .CheckboxAtom__input ~ .CheckboxAtom__marker
+      
+      &--default
+        border: 0.0625rem solid $primary-main-color
+
+  &__input
+    top: 0
+    left: 0
+    margin: 0
+    opacity: 0
+    z-index: 1
+    padding: 0
+    outline: none
+    cursor: pointer
+    position: absolute
+
+    &--disabled
+      cursor: not-allowed
+
+    &:checked ~ .CheckboxAtom__marker
+
+      &--default
+        background: $primary-main-color
+        border: 0.0625rem solid $primary-main-color
+        box-shadow: 0px 0px 6px 0px $primary-main-color
+
+      &--success
+        background: $primary-success-color
+        border: 0.0625rem solid $primary-success-color
+        box-shadow: 0px 0px 6px 0px $primary-success-color
+
+      &--error
+        background: $primary-error-color
+        border: 0.0625rem solid $primary-error-color
+        box-shadow: 0px 0px 6px 0px $primary-error-color
+
+      &:after
+        display: block
+    width: 1.25rem
+    height: 1.25rem
+
+  &__marker
+    top: 0
+    left: 0
+    position: absolute
+    border-radius: 3.125rem
+    transition: all 0.4s ease
+
+    &:after
+      content: ""
+      width: 5px
+      height: 10px
+      display: none
+      top: 0.0625rem
+      left: 0.3125rem
+      position: absolute
+      border: solid white
+      border-width: 0 0.1875rem 0.1875rem 0
+      -webkit-transform: rotate(45deg) scale(0.7)
+      -ms-transform: rotate(45deg) scale(0.7)
+      transform: rotate(45deg) scale(0.7)
+    width: 1.125rem
+    height: 1.125rem
+
+    &:after
+      width: 0.3125rem
+      height: 0.625rem
+
+    &--default
+      background: $white-color
+      border: 0.0625rem solid $primary-disabled-color
+
+    &--success
+      background: $white-color
+      border: 0.0625rem solid $primary-disabled-color
+
+    &--error
+      background: $white-color
+      border: 0.0625rem solid $primary-disabled-color
+
+    &--disabled
+      background: $white-color
+      border: 0.0625rem solid $primary-disabled-color
