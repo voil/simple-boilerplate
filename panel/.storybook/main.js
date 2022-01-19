@@ -32,6 +32,16 @@ module.exports = {
       ],
       include: path.resolve(__dirname, '../'),
     });
+    
+    config.module.rules.push({
+      test: /\.(png|jpg|gif|svg)$/,
+      use: [
+        {
+          loader: 'raw-loader',
+          options: {},
+        },
+      ],
+    });
 
     const icons = await getIconsNames();
     config.plugins.push(new webpack.DefinePlugin({
