@@ -30,4 +30,15 @@ describe('SpinnerAtom.vue', () => {
     expect(component.queryByTestId(/spinnerMaskAtomInstance/)).not.toBeNull();
     expect(component.queryByTestId(/spinnerMessageAtomInstance/)).not.toBeNull();
   });
+
+  it("should have add class SpinnerAtom__content--visible when spinner props isVisible true", () => {
+    const component = render(SpinnerAtom, {
+      props: {
+        isVisible: true,
+        message: 'test',
+      },
+    });
+    const content = component.getByTestId('spinnerContentAtomInstance');
+    expect(content.className.includes('SpinnerAtom__content--visible')).toEqual(true);
+  });
 });
