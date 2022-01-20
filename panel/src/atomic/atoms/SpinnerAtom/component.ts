@@ -19,5 +19,13 @@ export default defineComponent({
       type: String,
       default: null,
     },
+
+    /**
+     * Prop for visible spinner.
+     */
+    isVisible: {
+      type: Boolean,
+      default: false,
+    },
   },
 });
