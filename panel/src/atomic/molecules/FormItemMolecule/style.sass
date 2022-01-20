@@ -1,0 +1,27 @@
+.FormItemMolecule
+  display: flex
+  flex-direction: column
+  grid-row-gap: 0.3125rem
+
+  &__label
+    font-weight: 400
+    font-size: 0.875rem
+    color: $primary-text-color
+    transition: color 2s ease
+
+    &--error
+      color: $primary-error-color
+
+  &__error
+    font-weight: 300
+    font-size: 0.75rem
+    color: $primary-error-color
+    animation: fadeInError .5s
+
+    @keyframes fadeInError
+      from
+        opacity: 0
+
+      to
+        opacity: 1
+  
