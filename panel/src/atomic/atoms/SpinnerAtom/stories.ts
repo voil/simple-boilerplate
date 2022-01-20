@@ -18,6 +18,10 @@ export default {
       name: 'message',
       description: 'Prop for message spinner.',
     },
+    isVisible: {
+      name: 'isVisible',
+      description: 'Prop for visible spinner.', 
+    },
   },
   parameters: {
     jest: ['spinnerAtom.spec.ts'],
@@ -42,3 +46,8 @@ export const SpinnerAtom = (args: ComponentPropsType) => ({
     },
     template: '<SpinnerAtomComponent v-bind="args"><div>Lorem ipsum</div></SpinnerAtomComponent>',
 });
+
+
+SpinnerAtom.args = {
+  isVisible: true,
+};

@@ -1,13 +1,18 @@
 <template>
   <div class="SpinnerAtom">
-    <span v-if="message"
+    <span v-if="message && isVisible"
       class="SpinnerAtom__message"
       data-testid="spinnerMessageAtomInstance"
     >
       {{ message }}
     </span>
-    <div class="SpinnerAtom__spinner" />
+    <div v-if="isVisible"
+      class="SpinnerAtom__spinner"
+      data-testid="spinnerSpinnerAtomInstance"/>
     <div class="SpinnerAtom__content">
+      <div v-if="isVisible"
+        class="SpinnerAtom__mask"
+        data-testid="spinnerMaskAtomInstance"/>
       <slot />
     </div>
   </div>
