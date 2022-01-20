@@ -15,6 +15,7 @@ export default {
   argTypes: {
     texts: {
       name: 'texts',
+      required: true,
       description: 'Prop for texts form.',
     },
   },

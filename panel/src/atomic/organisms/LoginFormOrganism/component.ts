@@ -61,6 +61,7 @@ export default defineComponent({
      */
     texts: {
       default: null,
+      required: true,
       type: Object as PropType<TextType>
     },
   },
