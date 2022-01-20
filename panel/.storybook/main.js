@@ -63,7 +63,7 @@ module.exports = {
   "addons": [
     "@storybook/addon-jest",
     "@storybook/addon-links",
-    "@storybook/addon-essentials"
+    "@storybook/addon-essentials",
   ],
   "framework": "@storybook/vue3"
 }
