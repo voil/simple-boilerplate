@@ -8,12 +8,11 @@ import { Mutation, Resolver, Args } from '@nestjs/graphql';
 import { Session } from '../../../support/decorators/session.decorator';
 import { UsersSessionsService } from '../entities/users.sessions.service';
 import { CustomException } from '../../../support/handlers/custom.handler';
+import { Constants } from '../../../support/constants';
 
 /**
  * LoginResolver
  * Login resolver.
- *
-
  */
 @Resolver()
 export class LoginResolver {
@@ -42,7 +41,7 @@ export class LoginResolver {
     });
     const isMatch = await bcrypt.compare(
       params.password,
-      user.password || null,
+      user.password.trim() || null,
     );
 
     if (!user || !isMatch || !user.account.is_active) {
@@ -51,7 +50,7 @@ export class LoginResolver {
 
     const sessionCreated = await this.usersSessionService.createSession(user);
     session.currentLoggedUserToken =  hCryptString(`${sessionCreated.uuid}|${user.id}`);
-    
+  
     return { state: true };
   }
 }

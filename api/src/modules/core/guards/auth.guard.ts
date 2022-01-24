@@ -6,11 +6,25 @@ import { ForbiddenException } from '../../../support/handlers/forbidden.handler'
 import { UsersSessions } from '../../authorization/entities/users.sessions.entity';
 
 /**
+ * @var {SessionCookieType}
+ */
+type SessionCookieType = {
+  [key: string]: any;
+}
+
+/**
+ * @var {CookieType}
+ */
+type CookieType = {
+  cookie: Object;
+  currentLoggedUserToken: string;
+}
+
+/**
  * AuthGuard
  * Auth guard to check is user authorize.
  *
  * @implements CanActivate
-
  */
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -27,13 +41,15 @@ export class AuthGuard implements CanActivate {
    * @return Promise<boolean>
    */
   async canActivate(context): Promise<boolean> {
+    const sessionElement: CookieType = this.parseSessionObject(context.args[2].req.sessionStore.sessions);
+
     try {
-      if (!context.args[2].req.session.currentLoggedUserToken) {
+      if (!sessionElement?.currentLoggedUserToken) {
         throw new Error();
       }
 
       const unhashed = hDecryptString(
-        context.args[2].req.session.currentLoggedUserToken,
+        sessionElement.currentLoggedUserToken,
       ).split('|');
       const sessionsUser = getRepository(UsersSessions);
 
@@ -54,5 +70,18 @@ export class AuthGuard implements CanActivate {
     } catch (error) {
       throw new ForbiddenException();
     }
+  }
+
+  /**
+   * Method to parse session object from session memory store.
+   * @param {SessionCookieType} sessions 
+   * @returns {CookieType}
+   */
+  private parseSessionObject(sessions: SessionCookieType): CookieType {
+    return Object.keys(sessions).length > 0
+      ? JSON.parse(sessions[Object.keys(sessions)[0]])
+      : {
+        cookie: {},
+      } as CookieType;
   }
 }

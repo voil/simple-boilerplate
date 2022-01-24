@@ -38,7 +38,6 @@ export class ExceptionsHandler {
    * @return ResponseExceptionHandler
    */
   private parseErrorResponse(error: string): ResponseExceptionHandler {
-    console.log(error);
     error = error
       .replace('Unexpected error value: ', '')
       .replace('responseHandle', '"responseHandle"')
