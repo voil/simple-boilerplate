@@ -1,11 +1,11 @@
 import * as bcrypt from 'bcrypt';
 import { LoginArgs } from './login.args';
 import { LoginType } from './login.types';
-import * as secureSession from 'fastify-secure-session';
 import { hCryptString } from '../../../support/helpers';
 import { UsersService } from '../entities/users.service';
 import { Mutation, Resolver, Args } from '@nestjs/graphql';
 import { Session } from '../../../support/decorators/session.decorator';
+import { Req } from '@nestjs/common';
 import { UsersSessionsService } from '../entities/users.sessions.service';
 import { CustomException } from '../../../support/handlers/custom.handler';
 import { Constants } from '../../../support/constants';
@@ -34,6 +34,7 @@ export class LoginResolver {
   @Mutation(() => LoginType)
   async loginToPlatform(
     @Args('params') params: LoginArgs,
+    @Req() request: any,
     @Session() session: Record<string, any>,
   ): Promise<{ state: boolean }> {
     const user = await this.usersService.getUserByParams({
@@ -49,8 +50,9 @@ export class LoginResolver {
     }
 
     const sessionCreated = await this.usersSessionService.createSession(user);
-    session.currentLoggedUserToken =  hCryptString(`${sessionCreated.uuid}|${user.id}`);
-  
+    session.currentLoggedUserToken = hCryptString(`${sessionCreated.uuid}|${user.id}`);
+
+    session.save();
     return { state: true };
   }
 }

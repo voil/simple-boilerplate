@@ -10,7 +10,11 @@ module.exports = {
   ignorePatterns: ["**/e2e.spec.js"],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'class-methods-use-this': 'off',
+    '@typescript-eslint/no-empty-interface': 'off',
+    'new-cap': 'off',
+    'import/prefer-default-export': 'off'   
   },
   overrides: [{
     files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],

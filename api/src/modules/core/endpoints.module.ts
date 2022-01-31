@@ -30,18 +30,18 @@ import { ForbiddenException } from '../../support/handlers/forbidden.handler';
           typePaths: ['./**/*.graphql'],
           context: ({ req, res, connection }) => ({ req, res, connection }),
           installSubscriptionHandlers: true,
-          // subscriptions: {
-          //   onConnect: (_, ws: any) => {
-          //     return new Promise(res =>
-          //       SessionMiddleware(ws.upgradeReq, { } as any, async () => {
-          //         if(!ws.upgradeReq.session.currentLoggedUser) {
-          //           new ForbiddenException();
-          //         }
-          //         res({ loggedUser: ws.upgradeReq.session.currentLoggedUser });
-          //       }),
-          //     );
-          //   },
-          // },
+          subscriptions: {
+            onConnect: (_, ws: any) => {
+              return new Promise(res =>
+                SessionMiddleware(ws.upgradeReq, { } as any, async () => {
+                  if(!ws.upgradeReq.session.currentLoggedUser) {
+                    new ForbiddenException();
+                  }
+                  res({ loggedUser: ws.upgradeReq.session.currentLoggedUser });
+                }),
+              );
+            },
+          },
           cors: {
             credentials: true,
             origin: true,

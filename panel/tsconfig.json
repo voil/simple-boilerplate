@@ -32,8 +32,8 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
-, "src/atomic/atoms/IconAtom/stories.ts"  ],
+    "tests/**/*.tsx",
+  ],
   "exclude": [
     "node_modules"
   ]

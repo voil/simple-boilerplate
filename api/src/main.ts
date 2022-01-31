@@ -2,6 +2,7 @@ import { AppModule } from './app.module';
 import { NestFactory } from '@nestjs/core';
 import { useContainer } from 'class-validator';
 import { ValidationPipe } from '@nestjs/common';
+import * as cookieParser from 'cookie-parser';
 import SessionMiddleware from './support/middlewares/sessions.middleware';
 import { LogService } from './modules/core/entities/logger/logger.service';
 
@@ -17,6 +18,7 @@ async function bootstrap() {
   });
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
+  app.use(cookieParser());
   app.use(SessionMiddleware);
   app.useLogger(app.get(LogService));
   app.useGlobalPipes(new ValidationPipe({ transform: true }));

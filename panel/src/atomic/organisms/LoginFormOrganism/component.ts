@@ -73,8 +73,14 @@ export default defineComponent({
    * @returns Record<string, unknown>
    */
    setup(props: Readonly<PropsComponentType>, { emit }): Record<string, unknown> {
+     /**
+      * @var {Ref<boolean>}
+      */
     const isSpinnerVisible: Ref<boolean> = ref<boolean>(false);
 
+    /**
+     * @var {Ref<string>}
+     */
     const typeResult: Ref<string> = ref<string>('success');
 
     return {
