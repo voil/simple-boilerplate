@@ -1,10 +1,20 @@
 import Command, { CommandInterface } from '@/services/cqrs/command';
 
+/**
+ * @interface {LoginToPlatformCommandInterface}
+ */
 export interface LoginToPlatformCommandInterface {
   email: string;
   password: string;
 }
 
+/**
+ * LoginToPlatformCommand
+ * Login to platform command.
+ *
+ * @extends {Command}
+ * @implements {LoginToPlatformCommandInterface}
+ */
 export default class LoginToPlatformCommand extends Command
   implements LoginToPlatformCommandInterface {
     /**
@@ -25,7 +35,7 @@ export default class LoginToPlatformCommand extends Command
     /**
      * Constructor of class.
      * @param {String} email
-     * @param {String} password 
+     * @param {String} password
      */
     constructor(email: string, password: string) {
       super();

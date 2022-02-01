@@ -8,7 +8,6 @@ export function isRequiredValidation(): (value: boolean | string | number) => st
     return !value.toString()
       ? messageError
       : (value.toString().trim() !== '' ? null : messageError);
-  
   };
 }
 
@@ -17,7 +16,7 @@ export function isRequiredValidation(): (value: boolean | string | number) => st
  * @returns {(value: String) => String | Null}
  */
 export function isEmailValidation(): (value: string) => string | null {
-  return (value: string = '') => {
+  return (value = '') => {
     const messageError = 'The field has an incorrect e-mail format.';
     const pattern = new RegExp(/^([A-Z0-9._+-]+)@([A-Z0-9.-]+)\.([A-Z]{2,13})$/i);
     return pattern.test(value) ? null : messageError;
@@ -29,7 +28,7 @@ export function isEmailValidation(): (value: string) => string | null {
  * @returns {(value: String) => String | Null}
  */
 export function isPasswordValidation(): (value: string) => string | null {
-  return (value: string = '') => {
+  return (value = '') => {
     if (value.length < 8) {
       return 'The password must have 8 characters.';
     }

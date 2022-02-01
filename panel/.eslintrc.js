@@ -14,7 +14,10 @@ module.exports = {
     'class-methods-use-this': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
     'new-cap': 'off',
-    'import/prefer-default-export': 'off'   
+    'import/prefer-default-export': 'off',
+    'no-nested-ternary': 'off',
+    'no-return-await': 'off',
+    'consistent-return': 'off'
   },
   overrides: [{
     files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],

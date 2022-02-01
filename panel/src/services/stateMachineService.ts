@@ -1,7 +1,14 @@
 import {
   ref,
-  Ref
+  Ref,
 } from 'vue';
+
+/**
+ * @var {PayloadParametersType<T>}
+ */
+export type PayloadParametersType<T> = {
+  readonly [K in keyof T]: T[K];
+}
 
 /**
  * @var {StateMachineInterface}
@@ -10,13 +17,6 @@ interface StateMachineInterface {
   addState<T>(name: string, handler?: (payload: PayloadParametersType<T>) => Promise<void>): void;
   setState<T>(name: string, payload: PayloadParametersType<T>): Promise<void>;
   getCurrentState(): string;
-}
-
-/**
- * @var {PayloadParametersType<T>}
- */
-export type PayloadParametersType<T> = {
-  readonly [K in keyof T]: T[K];
 }
 
 /**
@@ -47,22 +47,25 @@ export default class StateMachineService implements StateMachineInterface {
    * Constructor of class.
    * @param {String} initialState
    */
-  constructor(initialState: string = 'default') {
+  constructor(initialState = 'default') {
     this.currentState = ref<string>(initialState);
   }
 
   /**
    * Method to add state for machine.
-   * @param {String} name 
-   * @param {Function} handler 
+   * @param {String} name
+   * @param {Function} handler
    */
-  public addState<T>(name: string, handler?: (payload: PayloadParametersType<T>) => Promise<void>): void {
+  public addState<T>(
+    name: string,
+    handler?: (payload: PayloadParametersType<T>) => Promise<void>,
+  ): void {
     this.statesList[name] = handler;
   }
 
   /**
    * Method to set state for current machine.
-   * @param {String }name 
+   * @param {String} name
    */
   public async setState<T>(name: string, payload?: PayloadParametersType<T>): Promise<void> {
     if (!Object.keys(this.statesList).includes(name)) {
@@ -81,5 +84,5 @@ export default class StateMachineService implements StateMachineInterface {
    */
   public getCurrentState(): string {
     return this.currentState.value;
-  } 
+  }
 }

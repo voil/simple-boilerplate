@@ -1,8 +1,14 @@
 import { CommandHandlerInterface } from '@/services/cqrs/commandHandler';
 import { CommandType } from '@/services/cqrs/command';
-import { LoginToPlatformCommandInterface } from './loginToPlatformCommand';
 import LoginFormStateMachine from '@/composable/store/machines/authorization/loginFormStateMachine';
+import { LoginToPlatformCommandInterface } from './loginToPlatformCommand';
 
+/**
+ * LoginToPlatformCommandHandler
+ * Handlet to execute login to platform command.
+ *
+ * @implements {CommandHandlerInterface}
+ */
 export default class LoginToPlatformCommandHandler implements CommandHandlerInterface {
   /**
    * @var {String}
@@ -18,6 +24,11 @@ export default class LoginToPlatformCommandHandler implements CommandHandlerInte
     }
   `;
 
+  /**
+   * Method to execute command.
+   * @param {CommandType<LoginToPlatformCommandInterface>} command
+   * @return {Promise<void>}
+   */
   public async execute(command: CommandType<LoginToPlatformCommandInterface>): Promise<any> {
     try {
       const ApolloService = (await import('@/services/apolloService')).default;
@@ -26,8 +37,7 @@ export default class LoginToPlatformCommandHandler implements CommandHandlerInte
         password: command.password,
       });
       LoginFormStateMachine.setState('success');
-    }
-    catch (error) {
+    } catch (error) {
       LoginFormStateMachine.setState('error');
     }
   }

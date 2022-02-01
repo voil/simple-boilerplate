@@ -12,14 +12,16 @@
           :error-message="errorMessages.email">
           <InputAtom :placeholder="texts? texts.email.placeholder: null"
             v-model="model.email"
-            :inputType="curretntStateFrom === 'pending' ? 'disabled' : 'default'" />
+            :inputType="curretntStateFrom === 'pending' ? 'disabled'
+              : (errorMessages.email ? 'error' : 'default')" />
         </FormItemMolecule>
         <FormItemMolecule v-if="curretntStateFrom !== 'success'"
           :label="texts? texts.password.label : null"
-          :error-message="errorMessages.email">
+          :error-message="errorMessages.password">
           <PasswordAtom :placeholder="texts? texts.password.placeholder: null"
             v-model="model.password"
-            :inputType="curretntStateFrom === 'pending' ? 'disabled' : 'default'" />
+            :inputType="curretntStateFrom === 'pending' ? 'disabled'
+              : (errorMessages.password ? 'error' : 'default')" />
         </FormItemMolecule>
         <ButtonAtom v-if="curretntStateFrom !== 'success'"
           :buttonType="curretntStateFrom === 'pending' ? 'disabled' : 'primary'"

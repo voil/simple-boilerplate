@@ -76,21 +76,21 @@ export default defineComponent({
     texts: {
       default: null,
       required: true,
-      type: Object as PropType<TextType>
+      type: Object as PropType<TextType>,
     },
   },
-
 
   /**
    * Main setup method for componenent.
    * @returns Record<string, unknown>
    */
-   setup(): Record<string, unknown> {
-     /**
-      * Computed property to get state of form machine.
-      * @var {ComputedRef<string>}
-      */
-    const curretntStateFrom: ComputedRef<string> = computed(() => LoginFormStateMachine.getCurrentState());
+  setup(): Record<string, unknown> {
+    /**
+     * Computed property to get state of form machine.
+     * @var {ComputedRef<string>}
+     */
+    const curretntStateFrom: ComputedRef<string> = computed(() => LoginFormStateMachine
+      .getCurrentState());
 
     /**
      * @var {LoginFormParamsType}
@@ -103,11 +103,10 @@ export default defineComponent({
     /**
      * @var {ErrorMessageType}
      */
-     const errorMessages: ErrorMessageType = reactive({
+    const errorMessages: ErrorMessageType = reactive({
       email: null,
       password: null,
     });
-
 
     /**
      * Function to handle submit form.
@@ -116,16 +115,22 @@ export default defineComponent({
     async function handleSubmitForm(): Promise<void> {
       const ValidationService = (await import('@/services/validationService')).default;
       const {
-          isEmailValidation,
-          isRequiredValidation,
-          isPasswordValidation,
-        } = await import ('@/services/rulesValidationService');
+        isEmailValidation,
+        isRequiredValidation,
+        isPasswordValidation,
+      } = await import('@/services/rulesValidationService');
 
-      errorMessages.email = ValidationService.isValid(model.email, [isRequiredValidation(), isEmailValidation()]);
-      errorMessages.password = ValidationService.isValid(model.password, [isRequiredValidation(), isPasswordValidation()]);
+      errorMessages.email = ValidationService.isValid(
+        model.email,
+        [isRequiredValidation(), isEmailValidation()],
+      );
+      errorMessages.password = ValidationService.isValid(
+        model.password,
+        [isRequiredValidation(), isPasswordValidation()],
+      );
 
       if (!errorMessages.email && !errorMessages.password) {
-        LoginFormStateMachine.setState('pending', model);
+        await LoginFormStateMachine.setState('pending', model);
       }
     }
 
