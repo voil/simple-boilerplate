@@ -37,7 +37,6 @@ export interface ApolloServiceInterface {
  * Apollo service for graphql.
  *
  * @implements ApolloServiceInterface
- * @author Przemysław Drzewicki <przemyslaw.drzewicki@gmail.com>
  */
 class ApolloService implements ApolloServiceInterface {
   /**

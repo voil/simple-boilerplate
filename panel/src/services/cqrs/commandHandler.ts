@@ -1,5 +1,5 @@
-import { CommandInterface } from './command';
+import { CommandType } from './command';
 
 export interface CommandHandlerInterface {
-  execute(command: CommandInterface): Promise<any>
+  execute(command: CommandType<any>): Promise<any>
 }

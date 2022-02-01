@@ -9,6 +9,13 @@ export interface CommandInterface {
 }
 
 /**
+ * @var {CommandType}
+ */
+export type CommandType<T> = {
+  readonly [K in keyof T]: T[K]
+}
+
+/**
  * Abstract class for commands.
  *
  * @abstract
@@ -28,7 +35,7 @@ abstract class Command implements CommandInterface {
    * Get name of module.
    *
    * @returns {String}
-   * @memberof Command
+   * @return {String}
    */
   public getHandlerName(): string {
     return this.handler;
