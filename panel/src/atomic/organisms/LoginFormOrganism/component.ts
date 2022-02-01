@@ -1,12 +1,10 @@
 import {
-  ref,
-  Ref,
+  reactive,
   PropType,
-  defineComponent,
-  defineAsyncComponent,
   computed,
   ComputedRef,
-  reactive,
+  defineComponent,
+  defineAsyncComponent,
 } from 'vue';
 import LoginFormStateMachine, { LoginFormParamsType } from '@/composable/store/machines/authorization/loginFormStateMachine';
 
