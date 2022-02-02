@@ -21,7 +21,11 @@ module.exports = {
     'import/no-unresolved': 'off',
     'linebreak-style': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
-    'cypress/no-unnecessary-waiting': 'off'
+    'cypress/no-unnecessary-waiting': 'off',
+    'no-confusing-arrow': 'off',
+    'import/no-cycle': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    'camelcase': 'off',
   },
   overrides: [{
     files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],

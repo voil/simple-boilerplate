@@ -1,4 +1,5 @@
 import { ErrorResponseInterface } from '@/utils/interfaces';
+import LoggedUserStateMachine from '@/composable/store/machines/authorization/loggedUserStateMachine';
 
 /**
  * ErrorHandlerService
@@ -25,6 +26,9 @@ class ErrorHandlerService {
    * Method to handle forbidden exception.
    */
   private handleForbiddenException(): void {
+    if (LoggedUserStateMachine.getCurrentState() === 'login') {
+      // ...
+    }
     // if (LoggedUserComposition.getUserParams()?.isLogged
     //   && !LogoutComposition.getLogoutParams().isLogoutActive
     // ) {

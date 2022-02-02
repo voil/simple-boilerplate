@@ -15,8 +15,15 @@ class QueryDispatcher {
   public async execute(action: QueryInterface): Promise<void|null> {
     try {
       const ApolloService = (await import('@/services/apolloService')).default;
-      return (await ApolloService.query(action.getQuery())).data;
+      const { hFirstToLower } = await import('@/utils/helpers');
+
+      const response = (await ApolloService.query(action.getQuery())).data;
+      let match = action.getQuery().match(/query (.*)\(/);
+      match = match && match.length > 0 ? match : action.getQuery().match(/query (.*)\{/);
+
+      return match ? response[hFirstToLower(match[1]).trim()] : null;
     } catch (e) {
+      console.log(e);
       return null;
     }
   }
