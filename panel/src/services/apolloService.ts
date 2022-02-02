@@ -6,6 +6,7 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { ApolloLink, split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import ApolloServiceMock from '@/services/apolloMockService';
 import ErrorHandlerService from '@/services/errorHandlerService';
 import { ParamsGraphQLInterface, ErrorResponseInterface } from '@/utils/interfaces';
 import {
@@ -32,6 +33,7 @@ export interface ApolloServiceInterface {
     callback?: (data: any) => void
   ): Promise<void>;
 }
+
 /**
  * ApolloService
  * Apollo service for graphql.
@@ -130,6 +132,7 @@ class ApolloService implements ApolloServiceInterface {
    * @return ApolloClient<NormalizedCacheObject>
    */
   private createApolloClient(): ApolloClient<NormalizedCacheObject> {
+    console.log('create');
     return new ApolloClient({
       link: this.createSplitLinktForSubscriptions(
         this.createMiddlewareCatchErrorResponse()
@@ -224,4 +227,5 @@ class ApolloService implements ApolloServiceInterface {
   }
 }
 
-export default new ApolloService();
+export default process.env.NODE_ENV?.trim() === 'tests'
+  ? new ApolloServiceMock() : new ApolloService();

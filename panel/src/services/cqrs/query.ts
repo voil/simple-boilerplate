@@ -21,11 +21,14 @@ export abstract class Query implements QueryInterface {
    */
   protected query: string;
 
+  protected params: any;
+
   /**
    * COnstructor of class.
    */
-  constructor() {
+  constructor(params?: any) {
     this.query = '';
+    this.params = params || {};
   }
 
   /**
@@ -34,5 +37,9 @@ export abstract class Query implements QueryInterface {
    */
   public getQuery(): string {
     return this.query;
+  }
+
+  public getParams(): any {
+    return this.params;
   }
 }

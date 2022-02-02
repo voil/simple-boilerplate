@@ -32,7 +32,10 @@ machine.addState<LoginFormParamsType>('pending',
  * State for show success when login is correct.
  */
 machine.addState('success', async () => {
-  setTimeout(() => router.push({ name: 'DashboardPage' }), 3000);
+  setTimeout(() => {
+    router.push({ name: 'DashboardPage' });
+    setTimeout(() => machine.setState('default'), 100);
+  }, 3000);
 });
 
 /**

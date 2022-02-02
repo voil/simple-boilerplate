@@ -19,7 +19,8 @@
           },
           error: {
             title: 'Error authentication',
-            description: 'Incorrect login to the panel. Incorrect e-mail or password. Please try again in a moment.',
+            description: `Incorrect login to the panel.
+              Incorrect e-mail or password. Please try again in a moment.`,
           },
         },
       }"

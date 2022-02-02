@@ -6,9 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit --json --outputFile=.storybook/.jest-test-results.json",
-    "test:e2e": "vue-cli-service test:e2e",
+    "test:e2e": "SET NODE_ENV=tests & yarn cypress open-ct",
     "lint": "vue-cli-service lint",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "SET NODE_ENV=tests & start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "dependencies": {

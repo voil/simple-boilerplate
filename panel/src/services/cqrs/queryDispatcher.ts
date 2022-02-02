@@ -15,9 +15,7 @@ class QueryDispatcher {
   public async execute(action: QueryInterface): Promise<void|null> {
     try {
       const ApolloService = (await import('@/services/apolloService')).default;
-      const response = await ApolloService.query(action.getQuery());
-      console.log(response);
-      return null;
+      return (await ApolloService.query(action.getQuery())).data;
     } catch (e) {
       return null;
     }

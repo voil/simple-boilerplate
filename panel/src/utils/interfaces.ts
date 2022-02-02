@@ -9,3 +9,7 @@ export interface ErrorResponseInterface extends GraphQLError{
   code: number;
   message: string;
 }
+
+export interface MockInterface {
+  handle(params?: ParamsGraphQLInterface): any;
+}

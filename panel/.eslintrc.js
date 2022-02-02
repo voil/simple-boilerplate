@@ -3,7 +3,7 @@ module.exports = {
   env: {
     node: true
   },
-  extends: ["plugin:vue/vue3-essential", "@vue/airbnb", "@vue/typescript/recommended", "plugin:storybook/recommended"],
+  extends: ["plugin:vue/vue3-essential", "@vue/airbnb", "@vue/typescript/recommended", "plugin:storybook/recommended", "plugin:cypress/recommended"],
   parserOptions: {
     ecmaVersion: 2020
   },
@@ -17,7 +17,11 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-nested-ternary': 'off',
     'no-return-await': 'off',
-    'consistent-return': 'off'
+    'consistent-return': 'off',
+    'import/no-unresolved': 'off',
+    'linebreak-style': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    'cypress/no-unnecessary-waiting': 'off'
   },
   overrides: [{
     files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],
