@@ -74,7 +74,7 @@ export default class StateMachineService implements StateMachineInterface {
     this.currentState.value = name;
     const handler = this.statesList[name];
     if (handler) {
-      await handler(payload);
+      return await handler(payload);
     }
   }
 

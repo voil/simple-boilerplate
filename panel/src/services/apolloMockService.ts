@@ -90,6 +90,8 @@ export default class ApolloServiceMock implements ApolloServiceInterface {
     const regex: RegExp = action === 'mutation' ? /mutation (.*)\(/ : /query (.*)\(/;
     const match = gql.match(regex);
 
+    console.log(match);
+
     if (match) {
       const mock = (await import(`@/utils/mocks/${hFirstToLower(match[1])}Mock`)).default;
       return mock;

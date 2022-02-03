@@ -13,7 +13,7 @@ export default class CommandBus {
    */
   public static async handle(command: CommandInterface): Promise<void> {
     const handler = await this.getHandlerForCommnad(command);
-    await handler.execute(command);
+    return await handler.execute(command);
   }
 
   /**

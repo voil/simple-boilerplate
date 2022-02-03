@@ -5,7 +5,7 @@ import { LoginToPlatformCommandInterface } from './loginToPlatformCommand';
 
 /**
  * LoginToPlatformCommandHandler
- * Handlet to execute login to platform command.
+ * Handler to execute login to platform command.
  *
  * @implements {CommandHandlerInterface}
  */

@@ -1,8 +1,11 @@
-import Store from '@/composable/store/store';
+import router from '@/router/index';
+import Store from '@/composable/store';
+import CommandBus from '@/services/cqrs/commandBus';
 import QueryDispatcher from '@/services/cqrs/queryDispatcher';
 import { UserType } from '@/composable/store/modules/userStore';
 import StateMachineService, { PayloadParametersType } from '@/services/stateMachineService';
 import GetLoggedUserQuery from '@/composable/cqrs/authorization/queries/getLoggedUserQuery';
+import LogoutFromPlatformCommand from '@/composable/cqrs/authorization/commands/logoutFromPlatformCommand';
 
 /**
  * @var {LoggedUserParamsType}
@@ -24,7 +27,11 @@ const machine = new StateMachineService('logout');
 /**
  * State for pending logout user from platform.
  */
-machine.addState('pendingLogout');
+machine.addState('pendingLogout', async () => {
+  await CommandBus.handle(new LogoutFromPlatformCommand());
+  router.push({ name: 'LoginPage' });
+  machine.setState('logout');
+});
 
 /**
  * State for pending to check is user logged to platform.
@@ -40,12 +47,14 @@ machine.addState('pendingCheckLogged', async (params: PayloadParametersType<Logg
  * State for set logged user to platorm.
  */
 machine.addState('login', async (payload: PayloadParametersType<ResponseUserType>) => {
-  await Store.commit('user', payload.record);
+  await Store.commit<UserType>('user', payload.record);
 });
 
 /**
  * State for set logout user from platform.
  */
-machine.addState('logout');
+machine.addState('logout', async () => {
+  await Store.commit('user', null);
+});
 
 export default machine;

@@ -14,6 +14,7 @@
           <InputAtom :placeholder="texts? texts.email.placeholder: null"
             v-model="model.email"
             data-cy="emailInput"
+            @keyup.enter="handleSubmitForm"
             :inputType="curretntStateFrom === 'pending' ? 'disabled'
               : (errorMessages.email ? 'error' : 'default')" />
         </FormItemMolecule>
@@ -23,6 +24,7 @@
           <PasswordAtom :placeholder="texts? texts.password.placeholder: null"
             v-model="model.password"
             data-cy="passwordInput"
+            @keyup.enter="handleSubmitForm"
             :inputType="curretntStateFrom === 'pending' ? 'disabled'
               : (errorMessages.password ? 'error' : 'default')" />
         </FormItemMolecule>

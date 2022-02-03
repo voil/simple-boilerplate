@@ -94,8 +94,5 @@ describe('LoginFormOrganism.vue', () => {
     // @ts-ignore
     cy.getElement('submitButton', { timeout: 0 })
       .should('not.exist');
-
-    cy.wait(3500);
-    cy.url().should('contain', '/panel/dashboard');
   });
 });

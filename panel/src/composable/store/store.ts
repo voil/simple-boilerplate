@@ -1,6 +1,8 @@
 import { reactive } from 'vue';
-import user from '@/composable/store/modules/userStore';
 
+/**
+ * @var {PayloadStoreType<T>}
+ */
 type PayloadStoreType<T> = {
   readonly [K in keyof T]: T[K];
 }
@@ -9,8 +11,9 @@ type PayloadStoreType<T> = {
  * @interface {StoreInterface}
  */
 interface StoreInterface {
-  commit<T>(name: string, payload: PayloadStoreType<T | any>): void;
-  get<T>(name: string): PayloadStoreType<T | any>;
+  addModule(name: string, module: Object): void;
+  commit<T>(name: string, payload: PayloadStoreType<T | any> | null): void
+  get<T>(name: string): PayloadStoreType<T | any> | null
 }
 
 /**
@@ -19,36 +22,46 @@ interface StoreInterface {
  * @implements {StoreInterface}
  */
 class Store implements StoreInterface {
-  private modules: any = reactive({
-    user,
-  })
+  /**
+   * @var {Any}
+   */
+  private modules: any = reactive({});
+
+  /**
+   * Method to add module to store.
+   * @param {String} name
+   * @param {Object} module
+   */
+  public addModule(name: string, module: Object): void {
+    this.modules[name] = module;
+  }
 
   /**
    * Method to commit changes to store.
    * @param {String} name
    * @param {PayloadStoreType<T>} payload
    */
-  public commit<T>(name: string, payload: PayloadStoreType<T | any>): void {
+  public commit<T>(name: string, payload: PayloadStoreType<T | any> | null): void {
     if (!this.modules[name]) {
       throw new Error(`Store ${name} not exists.`);
     } else {
-      this.modules[name] = {
+      this.modules[name] = payload ? {
         ...this.modules[name],
         ...payload,
-      };
+      } : {};
     }
   }
 
   /**
    * Method to get element from store.
    * @param {String} name
-   * @return {PayloadStoreType<T>}
+   * @return {PayloadStoreType<T | any> | null}
    */
-  public get<T>(name: string): PayloadStoreType<T | any> {
+  public get<T>(name: string): PayloadStoreType<T | any> | null {
     if (!this.modules[name]) {
       throw new Error(`Store ${name} not exists.`);
     } else {
-      return this.modules[name];
+      return Object.keys(this.modules[name]).length === 0 ? null : this.modules[name];
     }
   }
 }

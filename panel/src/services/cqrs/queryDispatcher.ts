@@ -23,7 +23,6 @@ class QueryDispatcher {
 
       return match ? response[hFirstToLower(match[1]).trim()] : null;
     } catch (e) {
-      console.log(e);
       return null;
     }
   }

@@ -1,8 +1,10 @@
 import {
   computed,
   defineComponent,
+  ComputedRef,
 } from 'vue';
-import Store from '@/composable/store/store';
+import Store from '@/composable/store';
+import LoggedUserStateMachine from '@/composable/store/machines/authorization/loggedUserStateMachine';
 
 /**
  * Login
@@ -16,8 +18,13 @@ export default defineComponent({
   setup() {
     const user = computed(() => Store.get('user'));
 
+    function logout() {
+      LoggedUserStateMachine.setState('pendingLogout');
+    }
+
     return {
       user,
+      logout,
     };
   },
 });

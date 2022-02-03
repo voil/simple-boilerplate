@@ -63,7 +63,7 @@ class ApolloService implements ApolloServiceInterface {
   public async query(
     query: string,
     params?: ParamsGraphQLInterface,
-    isCacheDisactive?: boolean,
+    isCacheDisactive = false,
   ): Promise<ApolloQueryResult<any>> {
     const response = await this.clientApollo.query({
       query: gql`
@@ -72,7 +72,9 @@ class ApolloService implements ApolloServiceInterface {
       variables: params,
       ...isCacheDisactive ? {
         fetchPolicy: 'network-only' as FetchPolicy,
-      } : {},
+      } : {
+        fetchPolicy: 'no-cache' as FetchPolicy,
+      },
     });
     return response;
   }
