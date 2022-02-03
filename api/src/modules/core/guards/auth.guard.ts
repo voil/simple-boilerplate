@@ -10,7 +10,6 @@ import { UsersSessions } from '../../authorization/entities/users.sessions.entit
  * Auth guard to check is user authorize.
  *
  * @implements CanActivate
-
  */
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -28,7 +27,7 @@ export class AuthGuard implements CanActivate {
    */
   async canActivate(context): Promise<boolean> {
     try {
-      if (!context.args[2].req.session.currentLoggedUserToken) {
+      if (!context.args[2].req.session?.currentLoggedUserToken) {
         throw new Error();
       }
 
@@ -36,7 +35,6 @@ export class AuthGuard implements CanActivate {
         context.args[2].req.session.currentLoggedUserToken,
       ).split('|');
       const sessionsUser = getRepository(UsersSessions);
-
       const session = await sessionsUser.find({
         where: {
           user: unhashed[1],
@@ -45,6 +43,7 @@ export class AuthGuard implements CanActivate {
         },
         relations: ['user', 'user.profile', 'user.teams', 'user.account'],
       });
+
       if (session.length === 0) {
         throw new Error();
       }

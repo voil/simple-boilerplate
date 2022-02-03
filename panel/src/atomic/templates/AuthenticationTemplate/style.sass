@@ -6,12 +6,19 @@
   background: -moz-radial-gradient(center, ellipse cover,  rgba(30,87,153,0) 0%, rgba(214,214,214,1) 100%)
   background: -webkit-radial-gradient(center, ellipse cover,  rgba(30,87,153,0) 0%,rgba(214,214,214,1) 100%)
   background: radial-gradient(ellipse at center,  rgba(30,87,153,0) 0%,rgba(214,214,214,1) 100%)
+  animation: fadeInAuthenticationTemplate .3s
 
+  @keyframes fadeInAuthenticationTemplate
+    from
+      opacity: 0
+
+    to
+      opacity: 1
 
   &__content
     width: 100%
     display: flex
-    max-width: 28.125rem
+    max-width: 30rem
     flex-direction: column
     grid-row-gap: 0.625rem
 

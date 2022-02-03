@@ -88,7 +88,7 @@ export class CheckIsExists implements ValidatorConstraintInterface {
     const sql = `
       SELECT
         *
-      FROM ${this.configService.get('DATABASE_IVR_SCHEMA')}.${params.table}
+      FROM ${this.configService.get('DATABASE_SCHEMA')}.${params.table}
       WHERE ${params.column} = '${value}' AND
       deleted_at IS NULL
       LIMIT 1

@@ -7,7 +7,14 @@ module.exports = (on, config) => {
       options,
       webpackConfig
     })
-  })
+  });
+
+  const mock = {
+    user: 'test@app.com',
+    pass: 'exampletest1A',
+  };
+
+  config = { ...config, mock };
 
   return config
 }

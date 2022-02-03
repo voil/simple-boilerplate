@@ -26,6 +26,7 @@ import { ConfigService } from './services/config.service';
           schema: configService.get('DATABASE_SCHEMA'),
           entities: [`${__dirname}/../../**/**/**/*.entity{.ts}`],
           autoLoadEntities: true,
+          synchronize: false,
         };
       },
       inject: [ConfigService],

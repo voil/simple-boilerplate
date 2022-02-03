@@ -33,6 +33,7 @@ export class LoggedUserResolver {
   @UseGuards(AuthGuard)
   async getLoggedUser(
     @CurrentLoggedUser() loggedUser: Users,
+    @Session() session: Record<string, any>,
   ): Promise<ResponseEndpointInterface> {
     return {
       total: 1,

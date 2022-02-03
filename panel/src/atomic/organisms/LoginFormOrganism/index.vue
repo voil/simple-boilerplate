@@ -1,17 +1,37 @@
 <template>
   <div class="LoginFormOrganism">
-    <SpinnerAtom :is-visible="isSpinnerVisible"
+    <SpinnerAtom :is-visible="curretntStateFrom === 'pending'"
       :message="texts? texts.spinnerMessage : null">
       <div class="LoginFormOrganism__content">
-        <AlertAtom :alertTitle="texts? texts.alerts[typeResult].title : null"
-          :alertDescription="texts? texts.alerts[typeResult].description : null"/>
-        <FormItemMolecule :label="texts? texts.email.label : null">
-          <InputAtom :placeholder="texts? texts.email.placeholder: null"/>
+        <AlertAtom v-if="curretntStateFrom === 'success' || curretntStateFrom === 'error'"
+          :alertType="curretntStateFrom"
+          :alertTitle="texts? texts.alerts[curretntStateFrom].title : null"
+          :alertDescription="texts? texts.alerts[curretntStateFrom].description : null"
+          data-cy="alertMessage" />
+        <FormItemMolecule v-if="curretntStateFrom !== 'success'"
+          :label="texts? texts.email.label : null"
+          :error-message="errorMessages.email">
+          <InputAtom :placeholder="texts? texts.email.placeholder: null"
+            v-model="model.email"
+            data-cy="emailInput"
+            @keyup.enter="handleSubmitForm"
+            :inputType="curretntStateFrom === 'pending' ? 'disabled'
+              : (errorMessages.email ? 'error' : 'default')" />
         </FormItemMolecule>
-        <FormItemMolecule :label="texts? texts.password.label : null">
-          <PasswordAtom :placeholder="texts? texts.password.placeholder: null"/>
+        <FormItemMolecule v-if="curretntStateFrom !== 'success'"
+          :label="texts? texts.password.label : null"
+          :error-message="errorMessages.password">
+          <PasswordAtom :placeholder="texts? texts.password.placeholder: null"
+            v-model="model.password"
+            data-cy="passwordInput"
+            @keyup.enter="handleSubmitForm"
+            :inputType="curretntStateFrom === 'pending' ? 'disabled'
+              : (errorMessages.password ? 'error' : 'default')" />
         </FormItemMolecule>
-        <ButtonAtom :buttonType="'primary'">
+        <ButtonAtom v-if="curretntStateFrom !== 'success'"
+          data-cy="submitButton"
+          :buttonType="curretntStateFrom === 'pending' ? 'disabled' : 'primary'"
+          @click="handleSubmitForm">
           {{ texts? texts.button : null }}
         </ButtonAtom>
       </div>

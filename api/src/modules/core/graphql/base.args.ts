@@ -1,4 +1,4 @@
-import { Field, InputType, createUnionType } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
 import { OrderTypes, LimitTypes, FilteringTypes } from '../../../support/enums';
 import { IsString, IsNumber, IsOptional, IsIn, IsArray } from 'class-validator';
 

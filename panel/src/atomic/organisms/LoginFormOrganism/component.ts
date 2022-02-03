@@ -1,26 +1,48 @@
 import {
-  ref,
-  Ref,
+  reactive,
   PropType,
+  computed,
+  ComputedRef,
   defineComponent,
   defineAsyncComponent,
 } from 'vue';
+import LoginFormStateMachine, { LoginFormParamsType } from '@/composable/store/machines/authorization/loginFormStateMachine';
 
+/**
+ * @var {ErrorMessageType}
+ */
+type ErrorMessageType = {
+  email: string | null;
+  password: string | null;
+}
+
+/**
+ * @var {PropsInputType}
+ */
 type PropsInputType = {
   label: string,
   placeholder: string,
 };
 
+/**
+ * @var {AlertType}
+ */
 type AlertType = {
   title: string,
   description: string,
 }
 
+/**
+ * @var {AlertsType}
+ */
 type AlertsType = {
   error: AlertType,
   success: AlertType,
 };
 
+/**
+ * @var {TextType}
+ */
 type TextType = {
   email: PropsInputType,
   password: PropsInputType,
@@ -30,16 +52,8 @@ type TextType = {
 };
 
 /**
- * @type PropsComponentType
- */
-type PropsComponentType = {
-  texts: TextType;
-}
-
-
-/**
- * Form item
- * Component molecule form item.
+ * Login Form Organism
+ * Component organism login form.
  *
  * @author Przemysław Drzewicki <przemyslaw.drzewicki@gmail.com>
  */
@@ -62,24 +76,69 @@ export default defineComponent({
     texts: {
       default: null,
       required: true,
-      type: Object as PropType<TextType>
+      type: Object as PropType<TextType>,
     },
   },
 
-
   /**
    * Main setup method for componenent.
-   * @param Readonly<PropsComponentType> props
    * @returns Record<string, unknown>
    */
-   setup(props: Readonly<PropsComponentType>, { emit }): Record<string, unknown> {
-    const isSpinnerVisible: Ref<boolean> = ref<boolean>(false);
+  setup(): Record<string, unknown> {
+    /**
+     * Computed property to get state of form machine.
+     * @var {ComputedRef<string>}
+     */
+    const curretntStateFrom: ComputedRef<string> = computed(() => LoginFormStateMachine
+      .getCurrentState());
 
-    const typeResult: Ref<string> = ref<string>('success');
+    /**
+     * @var {LoginFormParamsType}
+     */
+    const model: LoginFormParamsType = reactive({
+      email: '',
+      password: '',
+    });
+
+    /**
+     * @var {ErrorMessageType}
+     */
+    const errorMessages: ErrorMessageType = reactive({
+      email: null,
+      password: null,
+    });
+
+    /**
+     * Function to handle submit form.
+     * @return {Promise<void>}
+     */
+    async function handleSubmitForm(): Promise<void> {
+      const ValidationService = (await import('@/services/validationService')).default;
+      const {
+        isEmailValidation,
+        isRequiredValidation,
+        isPasswordValidation,
+      } = await import('@/services/rulesValidationService');
+
+      errorMessages.email = ValidationService.isValid(
+        model.email,
+        [isRequiredValidation(), isEmailValidation()],
+      );
+      errorMessages.password = ValidationService.isValid(
+        model.password,
+        [isRequiredValidation(), isPasswordValidation()],
+      );
+
+      if (!errorMessages.email && !errorMessages.password) {
+        await LoginFormStateMachine.setState('pending', model);
+      }
+    }
 
     return {
-      typeResult,
-      isSpinnerVisible,
+      model,
+      errorMessages,
+      handleSubmitForm,
+      curretntStateFrom,
     };
   },
 });

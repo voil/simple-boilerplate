@@ -18,7 +18,7 @@ type PropsComponentType = {
 /**
  * @type PropsComponentType
  */
-type IconType = { 
+type IconType = {
   [text: string]: string;
   password: string;
 }
@@ -93,7 +93,7 @@ export default defineComponent({
       text: 'eye-visibility',
       password: 'eye-hidden',
     };
-    
+
     /**
      * Method to set icon instance.
      * @return {Promise<void>}
@@ -107,7 +107,7 @@ export default defineComponent({
      * @param InputEvent event
      */
     function handleInput(event: InputEvent) {
-      emit('update:modelValue', (event.target as HTMLInputElement).value)
+      emit('update:modelValue', (event.target as HTMLInputElement).value);
     }
 
     /**
