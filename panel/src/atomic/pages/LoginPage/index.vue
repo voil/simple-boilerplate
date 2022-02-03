@@ -1,5 +1,7 @@
 <template>
-  <AuthenticationTemplate>
+  <AuthenticationTemplate
+    title="Login to platform"
+    description="Welcome back to the panel. Below is the login form.">
     <LoginFormOrganism
       :texts="{
         email: {

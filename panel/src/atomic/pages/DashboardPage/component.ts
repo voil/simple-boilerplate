@@ -1,10 +1,7 @@
 import {
-  computed,
   defineComponent,
-  ComputedRef,
+  defineAsyncComponent,
 } from 'vue';
-import Store from '@/composable/store';
-import LoggedUserStateMachine from '@/composable/store/machines/authorization/loggedUserStateMachine';
 
 /**
  * Login
@@ -15,16 +12,7 @@ import LoggedUserStateMachine from '@/composable/store/machines/authorization/lo
 export default defineComponent({
   name: 'DashboardPage',
 
-  setup() {
-    const user = computed(() => Store.get('user'));
-
-    function logout() {
-      LoggedUserStateMachine.setState('pendingLogout');
-    }
-
-    return {
-      user,
-      logout,
-    };
+  components: {
+    PanelTemplate: defineAsyncComponent(() => import('@/atomic/templates/PanelTemplate/index.vue')),
   },
 });
