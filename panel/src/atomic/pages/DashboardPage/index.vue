@@ -1,7 +1,6 @@
 <template>
-  <div>
-    dashboard {{ user }}
-    <button @click="logout">logout</button>
-  </div>
+  <PanelTemplate>
+    content
+  </PanelTemplate>
 </template>
 <script src="./component.ts" lang="ts" />

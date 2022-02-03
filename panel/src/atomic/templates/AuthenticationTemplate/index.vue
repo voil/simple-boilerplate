@@ -6,6 +6,7 @@
       <CardAtom
         :cardTitle="title"
         :cardDescription="description"
+        class="AuthenticationTemplate__card"
       >
         <slot />
       </CardAtom>

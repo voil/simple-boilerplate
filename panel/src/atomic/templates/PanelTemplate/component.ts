@@ -4,15 +4,15 @@ import {
 } from 'vue';
 
 /**
- * Login
- * Component page login.
+ * PanelTemplate
+ * Component template panel.
  *
  * @author Przemysław Drzewicki <przemyslaw.drzewicki@gmail.com>
  */
 export default defineComponent({
-  name: 'DashboardPage',
+  name: 'PanelTemplate',
 
   components: {
-    PanelTemplate: defineAsyncComponent(() => import('@/atomic/templates/PanelTemplate/index.vue')),
+    LogoAtom: defineAsyncComponent(() => import('@/atomic/atoms/LogoAtom/index.vue')),
   },
 });
