@@ -18,7 +18,7 @@ type PropsComponentType = {
  * Icon
  * Component atom icon.
  *
- * @author Przemysław Drzewicki <przemyslaw.drzewicki@gmail.com>
+
  */
 export default defineComponent({
   name: 'AtomIcon',

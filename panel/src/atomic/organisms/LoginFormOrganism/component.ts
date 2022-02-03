@@ -55,7 +55,7 @@ type TextType = {
  * Login Form Organism
  * Component organism login form.
  *
- * @author Przemysław Drzewicki <przemyslaw.drzewicki@gmail.com>
+
  */
 export default defineComponent({
   name: 'LoginFormOrganism',

@@ -1,0 +1,41 @@
+.DropdownAtom
+  display: flex
+  user-select: none
+  font-size: 0.75rem
+  width: max-content
+  position: relative
+  align-items: center
+  color: $primary-text-color
+  grid-column-gap: 0.3125rem
+
+  &__slot
+    cursor: pointer
+
+  &__icon
+    width: 8px
+    transition: transform 0.2s ease
+
+    &--rotate
+      transform: rotate(180deg)
+
+  &__overlayer
+    right: 0
+    top: 120%
+    width: 9.375rem
+    overflow: hidden
+    padding: 0.625rem
+    position: absolute
+    border-radius: 0.25rem
+    background: $white-color
+    animation: fadeInOverlayer .3s
+    box-shadow: 0 2px 4px rgb(15 34 58 / 5%)
+    border: 1px solid lighten($primary-disabled-color, 20%)
+
+    @keyframes fadeInOverlayer
+      from
+        top: 200%
+        opacity: 0
+
+      to
+        top: 120%
+        opacity: 1

@@ -7,7 +7,7 @@ import {
  * PanelTemplate
  * Component template panel.
  *
- * @author Przemysław Drzewicki <przemyslaw.drzewicki@gmail.com>
+
  */
 export default defineComponent({
   name: 'PanelTemplate',

@@ -6,7 +6,6 @@ import {
  * Card
  * Component atom card.
  *
- * @author Przemysław Drzewicki <przemyslaw.drzewicki@gmail.com>
  */
 export default defineComponent({
   name: 'ButtonAtom',

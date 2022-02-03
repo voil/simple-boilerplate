@@ -6,7 +6,7 @@ import {
  * Button
  * Component atom button.
  *
- * @author Przemysław Drzewicki <przemyslaw.drzewicki@gmail.com>
+
  */
 export default defineComponent({
   name: 'ButtonAtom',

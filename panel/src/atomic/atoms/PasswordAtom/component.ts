@@ -27,7 +27,7 @@ type IconType = {
  * PasswordAtom
  * Component atom password.
  *
- * @author Przemysław Drzewicki <przemyslaw.drzewicki@gmail.com>
+
  */
 export default defineComponent({
   name: 'PasswordAtom',

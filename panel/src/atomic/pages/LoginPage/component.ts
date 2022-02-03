@@ -7,7 +7,7 @@ import {
  * Login
  * Component page login.
  *
- * @author Przemysław Drzewicki <przemyslaw.drzewicki@gmail.com>
+
  */
 export default defineComponent({
   name: 'LoginPage',

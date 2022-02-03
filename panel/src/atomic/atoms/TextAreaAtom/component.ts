@@ -15,7 +15,7 @@ type PropsComponentType = {
  * TextareaAtom
  * Component atom input.
  *
- * @author Przemysław Drzewicki <przemyslaw.drzewicki@gmail.com>
+
  */
 export default defineComponent({
   name: 'TextareaAtom',
