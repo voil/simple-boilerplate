@@ -4,11 +4,45 @@
       <LogoAtom class="PanelTemplate__logo"
         image="/assets/images/logo.png" />
       <div class="PanelTemplate__user">
-        <slot name="user" />
+        <UserLoggedOrganism :menuOptions="{
+            profile: {
+              icon: 'edit',
+              label: 'Profile user'
+            },
+            logout: {
+              label: 'Logout',
+              icon: 'lock'
+            }
+          }"/>
       </div>
     </div>
     <div class="PanelTemplate__menu">
-      <slot name="menu" />
+      <MenuMolecule
+        :active-key="currentActiveMenuElement"
+        :options="{
+          dashboard: {
+            icon: 'edit',
+            label: 'Dashboard'
+          },
+          projects: {
+            icon: 'edit',
+            label: 'Projects'
+          },
+          teams: {
+            icon: 'edit',
+            label: 'Teams'
+          },
+          users: {
+            icon: 'edit',
+            label: 'Users'
+          },
+          privilages: {
+            icon: 'edit',
+            label: 'Privilages'
+          },
+        }"
+      @handleClickElementMenu="handleClickElementMenu"
+      typeMenu="vertical"/>
     </div>
     <div class="PanelTemplate__content">
       <slot />

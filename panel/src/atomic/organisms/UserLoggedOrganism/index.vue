@@ -3,7 +3,7 @@
     <DropdownAtom>
       {{ user? user.name_and_surname : '---' }}
       <template #overlayer>
-        dsf
+        <MenuMolecule :options="menuOptions"/>
       </template>
     </DropdownAtom>
   </div>

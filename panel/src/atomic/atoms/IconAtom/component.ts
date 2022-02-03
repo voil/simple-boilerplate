@@ -1,7 +1,7 @@
 import {
   Ref,
-  ref,
   watch,
+  shallowRef,
   onBeforeMount,
   defineComponent,
 } from 'vue';
@@ -53,14 +53,15 @@ export default defineComponent({
    * @returns Record<string, unknown>
    */
   setup(props: Readonly<PropsComponentType>) {
-    const iconInstance: Ref<null | string> = ref<null | string>(null);
+    const iconInstance: Ref<null | string> = shallowRef<null | string>(null);
 
     /**
      * Method to set icon instance.
      * @return {Promise<void>}
      */
     async function setIconInstance(): Promise<void> {
-      iconInstance.value = await (await fetch(`/assets/icons/${props.name}.svg`)).text();
+      const component = (await import(`@/assets/icons/${props.name}.vue`)).default;
+      iconInstance.value = component;
     }
 
     /**

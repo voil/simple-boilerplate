@@ -52,7 +52,7 @@ export default defineComponent({
      */
     options: {
       type: Object as PropType<OptionsType>,
-      default: {},
+      default: () => ({}),
     },
 
     /**
@@ -68,7 +68,7 @@ export default defineComponent({
           'horizontal',
         ].includes(prop as string);
       },
-    }
+    },
   },
 
   emits: ['handleClickElementMenu'],

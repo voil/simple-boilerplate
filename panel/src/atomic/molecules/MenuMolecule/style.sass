@@ -10,11 +10,11 @@
 
     &--horizontal
       flex-direction: column
-      grid-row-gap: 0.1875rem
+      grid-row-gap: 0.3125rem
 
   &__icon
     width: 0.875rem
-    display: flex
+    display: flex !important
 
   &__item
     display: flex
@@ -23,7 +23,7 @@
     font-weight: 300
     user-select: none
     align-items: center
-    grid-column-gap: 0.1875rem
+    grid-column-gap: 0.3125rem
     color: $primary-text-color
     transition: color 0.2s ease, background 0.2s ease
 
@@ -40,8 +40,8 @@
         fill: $primary-main-color
 
     &--vertical
+      padding: 0.625rem
       border-right: 1px solid lighten($primary-disabled-color, 20%)
-      padding: 0.1875rem 0.625rem
 
       &:last-child
         border-right: 0

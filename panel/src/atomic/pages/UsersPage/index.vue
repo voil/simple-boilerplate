@@ -1,6 +1,6 @@
 <template>
   <PanelTemplate>
-    dashboard
+    users
   </PanelTemplate>
 </template>
 <script src="./component.ts" lang="ts" />

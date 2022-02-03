@@ -15,7 +15,7 @@
           class="MenuMolecule__icon"
           data-testid="menuMoleculeIconInstance"
           :name="options[option].icon" />
-        {{ options[option].label }}  
+        {{ options[option].label }}
       </li>
     </ul>
   </div>

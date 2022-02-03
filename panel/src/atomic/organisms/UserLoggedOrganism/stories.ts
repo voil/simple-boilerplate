@@ -11,7 +11,13 @@ type ComponentPropsType = { };
 export default {
   component: UserLoggedOrganismComponent,
   title: 'UI/Organisms/User Logged Organism',
-  argTypes: {},
+  argTypes: {
+    menuOptions: {
+      name: 'menuOptions',
+      description: 'Props for options menu',
+    }
+  },
+  decorators: [() => ({ template: '<div style="padding-left: 200px"><story/></div>' })],
   parameters: {
     docs: {
       description: {
@@ -38,3 +44,15 @@ export const UserLoggedOrganism = (args: ComponentPropsType) => ({
       <UserLoggedOrganismComponent v-bind="args" />
     `,
 });
+
+UserLoggedOrganism.args = {
+  menuOptions: {
+    profile: {
+      label: 'Profile user'
+    },
+    logout: {
+      label: 'Logout',
+      icon: 'lock'
+    }
+  }
+};

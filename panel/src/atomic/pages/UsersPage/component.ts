@@ -4,13 +4,11 @@ import {
 } from 'vue';
 
 /**
- * Dashboard page
- * Component page dashboard.
- *
-
+ * Users
+ * Component page users.
  */
 export default defineComponent({
-  name: 'DashboardPage',
+  name: 'UsersdPage',
 
   components: {
     MenuMolecule: defineAsyncComponent(() => import('@/atomic/molecules/MenuMolecule/index.vue')),
