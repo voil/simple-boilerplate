@@ -16,9 +16,10 @@
     />
     <div class="PasswordAtom__eye"
       @click="tooglePasswordVisibility"
-      v-html="iconInstance"
       data-testid="inputEyeAtomInstance"
-    />
+    >
+      <component :is="iconInstance" />
+    </div>
   </div>
 </template>
 <script src="./component.ts" lang="ts"/>

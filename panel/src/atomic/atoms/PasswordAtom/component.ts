@@ -1,7 +1,8 @@
 import {
-  ref,
   Ref,
+  ref,
   watch,
+  shallowRef,
   onBeforeMount,
   defineComponent,
 } from 'vue';
@@ -77,7 +78,7 @@ export default defineComponent({
    * @returns Record<string, unknown>
    */
   setup(props: Readonly<PropsComponentType>, { emit }): Record<string, unknown> {
-    const iconInstance: Ref<null | string> = ref<null | string>(null);
+    const iconInstance: Ref<null | string> = shallowRef<null | string>(null);
 
     /**
      * Variable to set type of input.
@@ -99,7 +100,8 @@ export default defineComponent({
      * @return {Promise<void>}
      */
     async function setIconInstance(): Promise<void> {
-      iconInstance.value = await (await fetch(`/assets/icons/${typeIcon[typeInput.value]}.svg`)).text();
+      const component = (await import(`@/assets/icons/${typeIcon[typeInput.value]}.vue`)).default;
+      iconInstance.value = component;
     }
 
     /**

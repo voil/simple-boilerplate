@@ -7,7 +7,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020
   },
-  ignorePatterns: ["**/e2e.spec.js"],
+  ignorePatterns: ["**/e2e.spec.js", "src/assets/icons/*.vue"],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',

@@ -1,0 +1,64 @@
+.ModalWindowAtom
+  top: 0
+  left: 0
+  z-index: 10
+  width: 100%
+  height: 100%
+  position: absolute
+  animation: fadeInModal .3s
+
+  @keyframes fadeInModal
+    from
+      opacity: 0
+
+    to
+      opacity: 1
+
+  &__mask
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    opacity: 0.5
+    position: absolute
+    background-color: lighten($primary-disabled-color, 20%)
+
+  &__header
+    display: flex
+    flex-direction: column
+    justify-content: center
+    padding: 0.625rem 1.25rem
+    border-bottom: 0.0625rem solid $primary-disabled-color
+
+  &__title
+    margin: 0
+    font-weight: 600
+    font-size: 1.25rem
+    color: $primary-main-color
+
+  &__description
+    margin: 0
+    padding: 0
+    font-weight: 300
+    line-height: 140%
+    font-size: 0.75rem
+    color: $primary-text-color
+
+  &__window
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    margin: auto
+    width: 46.875rem
+    position: absolute
+    height: max-content
+    border-radius: 0.25rem
+    background: $white-color
+    border: 1px solid $primary-disabled-color
+    box-shadow: 0 0.3125rem 0.625rem -0.3125rem rgb(0 0 0 / 50%)
+    border-left-width: 0.375rem
+    border-left-color: $primary-main-color
+
+  &__content
+    padding: 1.25rem

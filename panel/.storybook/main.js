@@ -2,12 +2,12 @@ const path = require('path');
 const webpack = require('webpack');
 const fs = require('fs');
 
-const directoryPath = path.join(__dirname, '../public/assets/icons');
+const directoryPath = path.join(__dirname, '../src/assets/icons');
 
 function getIconsNames() {
   return new Promise((resolve, reject) => {
     fs.readdir(directoryPath, function (err, files) {
-      files = files.map(file => file.replace('.svg', ''));
+      files = files.map(file => file.replace('.vue', ''));
       resolve(files);
     });
   });
