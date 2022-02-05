@@ -8,7 +8,6 @@ type ComponentPropsType = {
   modalDescription: string;
 };
 
-
 /**
  * Export default component.
  */
@@ -26,6 +25,7 @@ export default {
     },
   },
   parameters: {
+    jest: ['modalWindowAtom.spec.ts'],
     docs: {
       description: {
         component: 'Modal window atom component.',
