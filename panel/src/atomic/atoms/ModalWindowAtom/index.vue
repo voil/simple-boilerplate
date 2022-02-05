@@ -2,7 +2,8 @@
   <teleport to="body">
     <div class="ModalWindowAtom">
       <div class="ModalWindowAtom__mask" />
-      <div class="ModalWindowAtom__window">
+      <div class="ModalWindowAtom__window"
+        :style="{ '--window-width': `${windowWidth}px` }">
         <div v-if="modalTitle || modalDescription"
           class="ModalWindowAtom__header"
           data-testid="modalWindowAtomHeaderInstance">

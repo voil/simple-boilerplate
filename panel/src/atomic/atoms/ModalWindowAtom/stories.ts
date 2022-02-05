@@ -5,6 +5,7 @@ import ModalWindowAtomComponent from './index.vue';
  */
 type ComponentPropsType = {
   modalTitle: string;
+  windowWidth: number,
   modalDescription: string;
 };
 
@@ -15,6 +16,10 @@ export default {
   component: ModalWindowAtomComponent,
   title: 'UI/Atoms/Modal Window Atom',
   argTypes: {
+    windowWidth: {
+      name: 'windowWidth',
+      description: 'Prop for window width.', 
+    },
     modalTitle: {
       name: 'modalTitle',
       description: 'Prop for title modal window atom.', 

@@ -20,13 +20,6 @@ type OptionsType = {
 }
 
 /**
- * @type PropsComponentType
- */
-type PropsComponentType = {
-  options: OptionsType;
-}
-
-/**
  * Menu Molecule
  * Component molecule menu.
  *

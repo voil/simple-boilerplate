@@ -1,7 +1,7 @@
 <template>
   <div class="DropdownAtom">
     <div class="DropdownAtom__slot"
-      @blur="isOverlayerVisible = false"
+      @blur="handleHideDropdown"
       @click="isOverlayerVisible = !isOverlayerVisible"
       data-testid="dropdownAtomInstance"
       tabindex="0">

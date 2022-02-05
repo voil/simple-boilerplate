@@ -1,11 +1,20 @@
 <template>
   <div class="UserLoggedOrganism">
     <DropdownAtom>
-      {{ user? user.name_and_surname : '---' }}
+      {{ userLogged? userLogged.name_and_surname : '---' }}
       <template #overlayer>
-        <MenuMolecule :options="menuOptions"/>
+        <MenuMolecule :options="menuOptions"
+          @handleClickElementMenu="handleClickElementMenu"
+        />
       </template>
     </DropdownAtom>
+    <PopoverConfirmMolecule
+      v-if="isPopoverConfirmVisible"
+      popover-title="Logout from platform"
+      popover-description="Are you sure you want to log out of the panel?"
+      @handleCancelAction="isPopoverConfirmVisible = false"
+      @handleConfirmAction="handleConfirmAction"
+    />
   </div>
 </template>
 <script src="./component.ts" lang="ts" />

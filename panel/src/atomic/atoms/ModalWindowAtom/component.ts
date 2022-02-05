@@ -27,5 +27,13 @@ export default defineComponent({
       type: String,
       default: null,
     },
+
+    /**
+     * Prop for window width.
+     */
+    windowWidth: {
+      type: Number,
+      default: 750,
+    },
   },
 });
