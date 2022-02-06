@@ -11,7 +11,11 @@ import {
 export default defineComponent({
   name: 'DropdownAtom',
 
-  setup() {
+  /**
+   * Main setup method for componenent.
+   * @returns Record<string, unknown>
+   */
+  setup(): Record<string, unknown> {
     /**
      * @var {Ref<boolean>}
      */

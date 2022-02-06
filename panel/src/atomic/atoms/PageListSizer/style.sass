@@ -1,0 +1,18 @@
+.PageListSizer
+  display: flex
+  align-items: center
+  
+  &__item
+    cursor: pointer
+    font-size: 0.75rem
+    padding: 0 0.625rem
+    color: $primary-text-color
+    border-right: 1px solid lighten($primary-disabled-color, 10%)
+    transition: color 0.4s ease
+
+    &:hover
+      color: $primary-main-color
+
+    &--active
+      font-weight: 600
+      color: $primary-main-color
