@@ -16,7 +16,6 @@ type ComponentPropsType = {
   color: string;
 };
 
-
 /**
  * Export default component.
  */

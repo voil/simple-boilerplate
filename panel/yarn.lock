@@ -14766,6 +14766,13 @@ store2@^2.12.0:
   resolved "https://registry.yarnpkg.com/store2/-/store2-2.13.1.tgz#fae7b5bb9d35fc53dc61cd262df3abb2f6e59022"
   integrity sha512-iJtHSGmNgAUx0b/MCS6ASGxb//hGrHHRgzvN+K5bvkBTN7A9RTpPSf1WSp+nPGvWCJ1jRnvY7MKnuqfoi3OEqg==
 
+storybook-vue3-router@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/storybook-vue3-router/-/storybook-vue3-router-2.2.1.tgz#9bee7b067fd41a65d3a11fb6bfec27490c0f01f3"
+  integrity sha512-ODAPqGwU9XIMrnudWs6k6rJ0RJAeOGfy1o3vzII2hyMGRPScldA4IlPK4LEFEzdih+B801Yt+MbZ6Lu23FvQFg==
+  dependencies:
+    vue-router "4.x"
+
 stream-browserify@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-2.0.2.tgz#87521d38a44aa7ee91ce1cd2a47df0cb49dd660b"
@@ -16226,7 +16233,7 @@ vue-loader@^15.9.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-router@^4.0.0-0:
+vue-router@4.x, vue-router@^4.0.0-0:
   version "4.0.12"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.12.tgz#8dc792cddf5bb1abcc3908f9064136de7e13c460"
   integrity sha512-CPXvfqe+mZLB1kBWssssTiWg4EQERyqJZes7USiqfW9B5N2x+nHlnsM1D3b5CaJ6qgCvMmYJnz+G0iWjNCvXrg==

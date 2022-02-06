@@ -1,4 +1,4 @@
-import LoginPageComponent from './index.vue';
+import DashboardPageComponent from './index.vue';
 
 /**
  * @type ComponentPropsType
@@ -9,16 +9,16 @@ type ComponentPropsType = {};
  * Export default component.
  */
 export default {
-  component: LoginPageComponent,
-  title: 'UI/Pages/Login Page',
+  component: DashboardPageComponent,
+  title: 'UI/Pages/Dashboard Page',
   parameters: {
     docs: {
       description: {
-        component: 'Login page component.',
+        component: 'Dashboard page component.',
       },
       source: {
         code: `
-          <LoginPage />
+          <DashboardPage />
         `,
       },
     },
@@ -28,12 +28,12 @@ export default {
 /**
  * Export storie for component.
  */
-export const LoginPage = (args: ComponentPropsType) => ({
-    components: { LoginPageComponent },
+export const DashboardPage = (args: ComponentPropsType) => ({
+    components: { DashboardPageComponent },
     setup() {
       return { args };
     },
     template: `
-      <LoginPageComponent v-bind="args" />
+      <DashboardPageComponent v-bind="args" />
     `,
 });

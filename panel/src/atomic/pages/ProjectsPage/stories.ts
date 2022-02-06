@@ -1,4 +1,4 @@
-import LoginPageComponent from './index.vue';
+import ProjectsPageComponent from './index.vue';
 
 /**
  * @type ComponentPropsType
@@ -9,16 +9,16 @@ type ComponentPropsType = {};
  * Export default component.
  */
 export default {
-  component: LoginPageComponent,
-  title: 'UI/Pages/Login Page',
+  component: ProjectsPageComponent,
+  title: 'UI/Pages/Projects Page',
   parameters: {
     docs: {
       description: {
-        component: 'Login page component.',
+        component: 'Projects page component.',
       },
       source: {
         code: `
-          <LoginPage />
+          <ProjectsPage />
         `,
       },
     },
@@ -28,12 +28,12 @@ export default {
 /**
  * Export storie for component.
  */
-export const LoginPage = (args: ComponentPropsType) => ({
-    components: { LoginPageComponent },
+export const ProjectsPage = (args: ComponentPropsType) => ({
+    components: { ProjectsPageComponent },
     setup() {
       return { args };
     },
     template: `
-      <LoginPageComponent v-bind="args" />
+      <ProjectsPageComponent v-bind="args" />
     `,
 });
