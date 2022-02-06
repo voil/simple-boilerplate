@@ -1,6 +1,6 @@
 <template>
   <teleport to="body">
-    <div class="ModalWindowAtom">
+    <div class="ModalWindowAtom" data-cy="modalWindowInstance">
       <div class="ModalWindowAtom__mask" />
       <div class="ModalWindowAtom__window"
         :style="{ '--window-width': `${windowWidth}px` }">

@@ -34,7 +34,7 @@ describe('LoginFormOrganism.vue', () => {
     cy.intercept('GET', '/assets/icons/*', { fixture: `../.././public/assets/icons/${name}.svg` });
   });
 
-  it('shoude test red and green path for login form.', () => {
+  it('should test red and green path for login form.', () => {
     const config: any = Cypress.config();
     // @ts-ignore
     mount(LoginFormOrganism, { propsData });

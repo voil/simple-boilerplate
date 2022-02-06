@@ -4,6 +4,7 @@
       @blur="handleHideDropdown"
       @click="isOverlayerVisible = !isOverlayerVisible"
       data-testid="dropdownAtomInstance"
+      data-cy="dropdownAtomInstance"
       tabindex="0">
       <slot/>
     </div>
@@ -22,6 +23,7 @@
     </svg>
     <div
       v-if="isOverlayerVisible"
+      data-cy="dropdownOverlayerInstance"
       :class="['DropdownAtom__overlayer', {
         'DropdownAtom__overlayer--visible': isOverlayerVisible
       }]"

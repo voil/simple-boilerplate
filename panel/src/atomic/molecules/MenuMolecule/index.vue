@@ -10,6 +10,7 @@
         }]"
         v-for="option in Object.keys(options)"
         @click="$emit('handleClickElementMenu', option)"
+        :data-cy="`${option}MenuElement`"
       >
         <IconAtom v-if="options[option].icon"
           class="MenuMolecule__icon"

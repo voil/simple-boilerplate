@@ -6,10 +6,12 @@
       :modal-description="popoverDescription">
       <div class="PopoverConfirmMolecule">
         <ButtonAtom button-type="default"
+          data-cy="buttonElementCancelInstance"
           @click="$emit('handleCancelAction')">
           Cancel
         </ButtonAtom>
-        <ButtonAtom @click="$emit('handleConfirmAction')">
+        <ButtonAtom @click="$emit('handleConfirmAction')"
+          data-cy="buttonElementSubmitInstance">
           Confirm
         </ButtonAtom>
       </div>

@@ -10,6 +10,7 @@
     </DropdownAtom>
     <PopoverConfirmMolecule
       v-if="isPopoverConfirmVisible"
+      data-cy="popoverConfirmInstance"
       popover-title="Logout from platform"
       popover-description="Are you sure you want to log out of the panel?"
       @handleCancelAction="isPopoverConfirmVisible = false"
