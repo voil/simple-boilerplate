@@ -7,7 +7,7 @@ import {
  * Authentication
  * Component template authentication.
  *
- * @author Przemysław Drzewicki <przemyslaw.drzewicki@gmail.com>
+
  */
 export default defineComponent({
   name: 'AuthenticationTemplate',

@@ -6,7 +6,7 @@ import {
  * Spinner
  * Component atom spinner.
  *
- * @author Przemysław Drzewicki <przemyslaw.drzewicki@gmail.com>
+
  */
 export default defineComponent({
   name: 'SpinnerAtom',

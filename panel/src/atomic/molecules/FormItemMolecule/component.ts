@@ -6,7 +6,7 @@ import {
  * Form item
  * Component molecule form item.
  *
- * @author Przemysław Drzewicki <przemyslaw.drzewicki@gmail.com>
+
  */
 export default defineComponent({
   name: 'FormItemMolecule',

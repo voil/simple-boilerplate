@@ -3,7 +3,7 @@ import { reactive } from 'vue';
 /**
  * @var {PayloadStoreType<T>}
  */
-type PayloadStoreType<T> = {
+export type PayloadStoreType<T> = {
   readonly [K in keyof T]: T[K];
 }
 

@@ -6,7 +6,7 @@ import {
  * Logo
  * Component atom logo.
  *
- * @author Przemysław Drzewicki <przemyslaw.drzewicki@gmail.com>
+
  */
 export default defineComponent({
   name: 'LogoAtom',

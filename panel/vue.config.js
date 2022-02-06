@@ -14,11 +14,11 @@ module.exports = {
           ],
         })
         .end()
-    })
+    });
   },
   configureWebpack: {
     resolve: {
-      extensions: ['.js', '.vue', '.json', 'png'],
+      extensions: ['.js', '.vue', '.json', 'png', 'svg'],
       alias: {
         '@$': resolve('src'),
       },

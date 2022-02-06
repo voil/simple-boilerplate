@@ -6,7 +6,7 @@ import {
  * Alert
  * Component atom alert.
  *
- * @author Przemysław Drzewicki <przemyslaw.drzewicki@gmail.com>
+
  */
 export default defineComponent({
   name: 'AlertAtom',

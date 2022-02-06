@@ -3,6 +3,6 @@
   "component": {
     "fileServerFolder": "public",
     "componentFolder": "src/atomic",
-    "testFiles": "**/e2e.spec.ts"
+    "testFiles": "**/e2e.test.ts"
   }
 }

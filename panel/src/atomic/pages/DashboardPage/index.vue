@@ -1,6 +1,6 @@
 <template>
   <PanelTemplate>
-    content
+    dashboard
   </PanelTemplate>
 </template>
 <script src="./component.ts" lang="ts" />

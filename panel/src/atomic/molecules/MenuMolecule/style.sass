@@ -1,0 +1,71 @@
+.MenuMolecule
+  &__list
+    margin: 0
+    padding: 0
+    display: flex
+    list-style-type: none
+
+    &--vertical
+      flex-direction: row
+
+    &--horizontal
+      flex-direction: column
+      grid-row-gap: 0.3125rem
+
+  &__icon
+    width: 0.875rem
+    display: flex !important
+
+  &__item
+    display: flex
+    font-size: 12px
+    cursor: pointer
+    font-weight: 300
+    user-select: none
+    align-items: center
+    grid-column-gap: 0.3125rem
+    color: $primary-text-color
+    transition: color 0.2s ease, background 0.2s ease
+
+    &--empty
+      padding-left: 1rem
+    
+    .MenuMolecule__icon svg
+      transition: fill 0.2s ease
+
+    &:hover
+      color: $primary-main-color
+
+      .MenuMolecule__icon svg
+        fill: $primary-main-color
+
+    &--vertical
+      padding: 0.625rem
+      border-right: 1px solid lighten($primary-disabled-color, 20%)
+
+      &:last-child
+        border-right: 0
+      
+      &:hover
+        color: $white-color
+        background: $primary-main-color
+
+        .MenuMolecule__icon svg
+          fill: $white-color
+
+    &--vertical.MenuMolecule__item--active
+      color: $white-color
+      background: $primary-main-color
+
+      .MenuMolecule__icon svg
+        fill: $white-color
+
+    &--horizontal.MenuMolecule__item--active
+      color: $primary-main-color
+
+      .MenuMolecule__icon svg
+        fill: $primary-main-color
+        
+
+
+

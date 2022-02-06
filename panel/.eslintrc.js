@@ -7,7 +7,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020
   },
-  ignorePatterns: ["**/e2e.spec.js"],
+  ignorePatterns: ["**/e2e.spec.js", "src/assets/icons/*.vue"],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -26,6 +26,7 @@ module.exports = {
     'import/no-cycle': 'off',
     '@typescript-eslint/ban-types': 'off',
     'camelcase': 'off',
+    'no-lone-blocks': 'off',
   },
   overrides: [{
     files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],
