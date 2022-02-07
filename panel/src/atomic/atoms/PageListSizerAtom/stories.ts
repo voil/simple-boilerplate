@@ -20,6 +20,7 @@ export default {
     },
   },
   parameters: {
+    jest: ['pageListSizeAtom.spec.ts'],
     docs: {
       description: {
         component: 'Page list sizer component.',
