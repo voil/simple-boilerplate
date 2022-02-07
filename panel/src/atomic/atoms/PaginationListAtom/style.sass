@@ -1,0 +1,60 @@
+.PaginationListAtom
+  display: flex
+  align-items: center
+  grid-column-gap: 0.5rem
+
+  &__button
+    display: flex
+    width: 1.625rem
+    height: 1.625rem
+    cursor: pointer
+    user-select: none
+    font-size: 0.75rem
+    align-items: center
+    border-radius: 0.25rem
+    justify-content: center
+    color: $primary-text-color
+    transition: border-color 0.4s ease, color 0.4s ease
+    border: 0.0625rem solid darken($primary-default-color, 10%)
+
+    &--default
+      border: 0
+      font-size: 16px
+      line-height: 20px
+      align-items: baseline
+
+    &:hover
+      color: $primary-main-color
+      border-color: $primary-main-color
+
+      .PaginationListAtom__icon
+        fill: $primary-main-color
+
+    &--active
+      cursor: default
+      color: $white-color
+      background:  $primary-main-color
+
+      &:hover
+        color: $white-color
+        background:  $primary-main-color
+
+    &--disabled
+      opacity: 0.6
+      cursor: not-allowed
+
+      &:hover
+        border: 0.0625rem solid darken($primary-default-color, 10%)
+        
+
+  &__icon
+    width: 0.75rem
+    height: 0.75rem
+    fill: $primary-text-color
+    transition: fill 0.4s ease
+
+    &--left
+      transform: rotate(90deg)
+
+    &--right
+      transform: rotate(-90deg)
