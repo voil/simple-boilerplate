@@ -30,6 +30,7 @@ export default {
     },
   },
   parameters: {
+    jest: ['paginationListAtom.spec.ts'],
     docs: {
       description: {
         component: 'Page pagination component.',
