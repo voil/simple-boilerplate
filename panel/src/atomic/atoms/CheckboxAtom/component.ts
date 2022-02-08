@@ -16,6 +16,7 @@ export default defineComponent({
   name: 'CheckboxAtom',
 
   emits: [
+    'handleChangeValue',
     'update:modelValue',
   ],
 
@@ -57,7 +58,10 @@ export default defineComponent({
      * @param InputEvent event
      */
     const handleInput = (event: InputEvent) => (props.inputType !== 'disabled'
-      ? emit('update:modelValue', (event.target as HTMLInputElement).checked) : null);
+      ? (() => {
+        emit('update:modelValue', (event.target as HTMLInputElement).checked);
+        emit('handleChangeValue', (event.target as HTMLInputElement).checked);
+      })() : null);
 
     return {
       handleInput,

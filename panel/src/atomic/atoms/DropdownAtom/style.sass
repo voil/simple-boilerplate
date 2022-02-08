@@ -21,7 +21,6 @@
       transform: rotate(0deg)
 
   &__overlayer
-    right: 0
     top: 120%
     width: 9.375rem
     overflow: hidden
@@ -32,6 +31,12 @@
     animation: fadeInOverlayer .3s
     box-shadow: 0 2px 4px rgb(15 34 58 / 5%)
     border: 1px solid lighten($primary-disabled-color, 20%)
+
+    &--left
+      right: 0
+
+    &--right
+      left: 0
 
     @keyframes fadeInOverlayer
       from

@@ -1,7 +1,7 @@
 <template>
   <div class="DropdownAtom">
     <div class="DropdownAtom__slot"
-      @blur="handleHideDropdown"
+      @blur="hideOnClick ? handleHideDropdown : null"
       @click="isOverlayerVisible = !isOverlayerVisible"
       data-testid="dropdownAtomInstance"
       data-cy="dropdownAtomInstance"
@@ -24,7 +24,7 @@
     <div
       v-if="isOverlayerVisible"
       data-cy="dropdownOverlayerInstance"
-      :class="['DropdownAtom__overlayer', {
+      :class="[`DropdownAtom__overlayer DropdownAtom__overlayer--${positionOverlayer}`, {
         'DropdownAtom__overlayer--visible': isOverlayerVisible
       }]"
       data-testid="dropdownAtomOverlayerInstance">

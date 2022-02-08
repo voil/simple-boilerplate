@@ -1,0 +1,42 @@
+.LinkAtom
+  cursor: pointer
+  text-decoration: none
+  transition: color 0.4s ease
+
+  &--default
+    color: $primary-text-color
+
+    &:hover
+      color: lighten($primary-text-color, 15%)
+
+  &--primary
+    color: $primary-main-color
+
+    &:hover
+      color: lighten($primary-main-color, 15%)
+
+  &--error
+    color: $primary-error-color
+
+    &:hover
+      color: lighten($primary-error-color, 15%)
+
+  &--info
+    color: $primary-info-color
+
+    &:hover
+      color: lighten($primary-info-color, 15%)
+
+  &--warning
+    color: $primary-warning-color
+
+    &:hover
+      color: lighten($primary-warning-color, 15%)
+
+
+  &--disabled
+    cursor:  not-allowed
+    color: $primary-disabled-color
+
+    &:hover
+      color: lighten($primary-disabled-color, 15%)

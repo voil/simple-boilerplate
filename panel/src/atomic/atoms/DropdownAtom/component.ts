@@ -11,6 +11,29 @@ import {
 export default defineComponent({
   name: 'DropdownAtom',
 
+  props: {
+    /**
+     * Prop for position of overlayer
+     * @type {String}
+     * @values left, right.
+     */
+    positionOverlayer: {
+      type: String,
+      default: 'left',
+      validator(prop: string): boolean {
+        return ['left', 'right'].includes(prop);
+      },
+    },
+
+    /**
+     * Prop for handle hide on click.
+     */
+    hideOnClick: {
+      type: Boolean,
+      default: true,
+    },
+  },
+
   /**
    * Main setup method for componenent.
    * @returns Record<string, unknown>
