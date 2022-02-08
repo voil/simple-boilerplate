@@ -1,0 +1,170 @@
+.TableListMolecule
+  &__wrapper
+    width: 100%
+    display: flex
+    align-items: center
+
+  &__header
+    width: 100%
+    align-items: center
+    display: -webkit-inline-box
+
+  &__headerItem
+    float: left
+    display: none
+    font-weight: 400
+    padding: 0.625rem
+    font-size: 0.875rem
+    width: var(--width-column)
+    background: lighten($primary-disabled-color, 20%)
+    border-top: 1px solid lighten($primary-disabled-color, 15%)
+    border-right: 1px solid lighten($primary-disabled-color, 15%)
+    border-bottom: 1px solid lighten($primary-disabled-color, 15%)
+
+    &--visible
+      display: block
+
+  &__columnsVisiblity
+    display: flex
+    align-items: center
+    grid-column-gap: 0.5rem
+    margin-bottom: 0.3125rem
+
+  &__content
+    flex: 1
+    overflow-x: scroll
+    background: lighten($primary-disabled-color, 22%)
+
+  &__data
+    align-items: center
+    display: -webkit-inline-box
+    background: lighten($primary-main-color, 45%)
+    transition: background 0.4s ease
+
+    &:nth-child(2n+2)
+      background: $white-color
+
+    &:hover
+      background: lighten($primary-main-color, 40%)
+
+  &__actions
+    z-index: 10
+    display: flex
+    align-self: baseline
+    flex-direction: column
+    box-shadow: -4px 0px 4px -1px rgb(0 0 0 / 8%)
+
+  &__settings
+    z-index: 10
+    display: flex
+    align-self: flex-start
+    flex-direction: column
+    box-shadow: 4px 0px 4px -1px rgb(0 0 0 / 8%)
+
+  &__dataItem
+    float: left
+    display: none
+    font-weight: 400
+    padding: 0.625rem
+    font-size: 0.875rem
+    width: var(--width-row)
+    border-right: 1px solid lighten($primary-disabled-color, 15%)
+    border-bottom: 1px solid lighten($primary-disabled-color, 15%)
+
+    &--visible
+      display: flex
+      align-items: center
+
+  &__actionsHeader
+    width: 3.4375rem
+    font-weight: 400
+    padding: 0.625rem
+    font-size: 0.875rem
+    background: lighten($primary-disabled-color, 20%)
+    border-top: 1px solid lighten($primary-disabled-color, 15%)
+    border-right: 1px solid lighten($primary-disabled-color, 15%)
+    border-bottom: 1px solid lighten($primary-disabled-color, 15%)
+
+  &__actionsItem
+    width: 3.4375rem
+    display: flex
+    font-weight: 400
+    padding: 0.625rem
+    align-items: center
+    font-size: 0.875rem
+    grid-column-gap: 0.5rem
+    border-right: 1px solid lighten($primary-disabled-color, 15%)
+    border-bottom: 1px solid lighten($primary-disabled-color, 15%)
+
+  &__settingsHeader
+    width: 1.875rem
+    font-weight: 400
+    padding: 0.625rem
+    font-size: 0.875rem
+    background: lighten($primary-disabled-color, 20%)
+    border-top: 1px solid lighten($primary-disabled-color, 15%)
+    border-left: 1px solid lighten($primary-disabled-color, 15%)
+    border-bottom: 1px solid lighten($primary-disabled-color, 15%)
+
+  &__settingsItem
+    display: flex
+    width: 1.875rem
+    font-weight: 400
+    height: 1.3125rem
+    padding: 0.625rem
+    font-size: 0.875rem
+    justify-content: center
+    border-left: 1px solid lighten($primary-disabled-color, 15%)
+    border-bottom: 1px solid lighten($primary-disabled-color, 15%)
+
+  &__settingsIcon
+    width: 21px
+    display: flex
+
+  &__selected
+    width: 100%
+    display: flex
+    font-size: 0.75rem
+    align-items: center
+    margin-bottom: 0.3125rem
+    justify-content: flex-end
+
+  &__action
+    display: flex
+    cursor: pointer
+    width: 1.375rem
+    height: 1.375rem
+    align-items: center
+    justify-content: center
+
+    &--update
+      border-radius: 0.25rem
+      background: $white-color
+      border: 0.0625rem solid darken($primary-warning-color, 10%)
+
+      svg
+        fill: darken($primary-warning-color, 10%) !important
+
+      &:hover
+        background: lighten($primary-warning-color, 10%)
+
+        svg
+          fill: $white-color !important
+
+    &--delete
+      border-radius: 0.25rem
+      background: $white-color
+      border: 0.0625rem solid darken($primary-error-color, 10%)
+
+      svg
+        fill: darken($primary-error-color, 10%) !important
+
+      &:hover
+        background: lighten($primary-error-color, 10%)
+
+        svg
+          fill: $white-color !important
+
+  &__actionIcon
+    width: 1rem
+    height: 1rem

@@ -3,20 +3,20 @@ import {
 } from 'vue';
 
 /**
- * Button
- * Component atom button.
+ * Link
+ * Component atom link.
  */
 export default defineComponent({
-  name: 'ButtonAtom',
+  name: 'LinkAtom',
 
   props: {
     /**
-     * Prop for type of button.
+     * Prop for type of link.
      * @values info, error, warning, primary, disabled.
      */
-    buttonType: {
+    linkType: {
       type: String,
-      default: 'primary',
+      default: 'default',
       validator(prop: string): boolean {
         return [
           'info',
