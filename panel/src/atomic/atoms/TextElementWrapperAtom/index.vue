@@ -1,12 +1,14 @@
 <template>
   <div :class="['TextElementWrapperAtom', {
-    'TextElementWrapperAtom--tooltip': textFromSlot.length > breakpointText
+    'TextElementWrapperAtom--tooltip': paramsColumn.slot.trim().length > breakpointText
   }]">
-    {{ textFromSlot.length > breakpointText ? `${textFromSlot.slice(0, breakpointText)}...` : textFromSlot }}
-    <div v-if="textFromSlot.length > breakpointText"
+    {{ paramsColumn.slot.trim().length > breakpointText
+      ? `${paramsColumn.slot.trim().slice(0, breakpointText)}...` : paramsColumn.slot.trim() }}
+         <slot />
+    <div v-if="paramsColumn.slot.trim().length > breakpointText"
       class="TextElementWrapperAtom__tooltip">
       <i class="TextElementWrapperAtom__triangle"/>
-      {{ textFromSlot }}
+      {{ paramsColumn.slot.trim() }}
     </div>
   </div>
 </template>

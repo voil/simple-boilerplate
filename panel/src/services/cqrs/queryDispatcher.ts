@@ -12,12 +12,12 @@ class QueryDispatcher {
    * @param {QueryInterface} action
    * @return {@returns }
    */
-  public async execute(action: QueryInterface): Promise<void|null> {
+  public async execute(action: QueryInterface): Promise<any|null> {
     try {
       const ApolloService = (await import('@/services/apolloService')).default;
       const { hFirstToLower } = await import('@/utils/helpers');
 
-      const response = (await ApolloService.query(action.getQuery())).data;
+      const response = (await ApolloService.query(action.getQuery(), action.getParams())).data;
       let match = action.getQuery().match(/query (.*)\(/);
       match = match && match.length > 0 ? match : action.getQuery().match(/query (.*)\{/);
 

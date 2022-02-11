@@ -16,7 +16,8 @@
         1.562-4.097,0-5.656L52,46.343z"
       />
     </svg>
-    <slot />
+
+    {{ !paramsColumn.slot || paramsColumn.slot === '' ? '---' : paramsColumn.slot.trim() }}
   </div>
 </template>
 <script src="./component.ts" lang="ts" />

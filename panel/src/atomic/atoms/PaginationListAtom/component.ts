@@ -1,6 +1,6 @@
 import {
-  ref,
-  Ref,
+  computed,
+  ComputedRef,
   defineComponent,
 } from 'vue';
 
@@ -12,7 +12,6 @@ type PropsComponentType = {
   currentPage: number;
   totalCount: number;
 }
-
 
 /**
  * PaginationListAtom
@@ -56,7 +55,9 @@ export default defineComponent({
    * @returns Record<string, unknown>
    */
   setup(props: Readonly<PropsComponentType>, { emit }): Record<string, unknown> {
-    const countOfPages: Ref<number> = ref<number>(Math.ceil(props.totalCount / props.pageSize));
+    const countOfPages: ComputedRef<number> = computed(
+      () => Math.ceil(props.totalCount / props.pageSize),
+    );
 
     /**
      * Function to handle change list size.

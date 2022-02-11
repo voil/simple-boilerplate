@@ -1,8 +1,8 @@
 import {
   ref,
   Ref,
-  PropType,
   reactive,
+  PropType,
   defineComponent,
   defineAsyncComponent,
 } from 'vue';
@@ -17,13 +17,23 @@ export type ColumnsTablePropsType = {
     label: string;
     type?: string;
     isVisible?: boolean;
+    canSorting?: boolean | string;
   };
 }
 
 /**
+ * @var {SortingType}
+ */
+type SortingType = {
+  [none: string]: string,
+  desc: string,
+  asc: string,
+};
+
+/**
  * @type PropsComponentType
  */
- type PropsComponentType = {
+type PropsComponentType = {
   columnsTable: ColumnsTablePropsType;
   dataTable: any[];
 }
@@ -42,9 +52,6 @@ export default defineComponent({
     DividerAtom: defineAsyncComponent(() => import('@/atomic/atoms/DividerAtom/index.vue')),
     CheckboxAtom: defineAsyncComponent(() => import('@/atomic/atoms/CheckboxAtom/index.vue')),
     DropdownAtom: defineAsyncComponent(() => import('@/atomic/atoms/DropdownAtom/index.vue')),
-    TimeElementWrapperAtom: defineAsyncComponent(() => import('@/atomic/atoms/TimeElementWrapperAtom/index.vue')),
-    TextElementWrapperAtom: defineAsyncComponent(() => import('@/atomic/atoms/TextElementWrapperAtom/index.vue')),
-    BooleanElementWrapperAtom: defineAsyncComponent(() => import('@/atomic/atoms/BooleanElementWrapperAtom/index.vue')),
   },
 
   props: {
@@ -53,7 +60,7 @@ export default defineComponent({
      */
     columnsTable: {
       type: Object as PropType<ColumnsTablePropsType>,
-      default: [],
+      default: () => ({}),
     },
 
     /**
@@ -61,34 +68,49 @@ export default defineComponent({
      */
     dataTable: {
       type: Array as PropType<any>,
-      default: [],
+      default: () => ([]),
     },
   },
+
+  emits: [
+    'handleSortList',
+  ],
 
   /**
    * Main setup method for componenent.
    * @param Readonly<PropsComponentType> props
    * @returns Record<string, unknown>
    */
-   setup(props: Readonly<PropsComponentType>, { emit }): Record<string, unknown> {
-     /**
-      * @var {Ref<string[]>}
-      */
+  setup(props: Readonly<PropsComponentType>, { emit }): Record<string, unknown> {
+    /**
+     * @var {Ref<string[]>}
+     */
     const selectedRows: Ref<string[]> = ref<string[]>([]);
 
-     /**
-      * Function to assign dynamical property to colums.
-      * @private
-      * @returns {ColumnsTablePropsType}
-      */
-    function __assignDynamicalParamToColumns(): ColumnsTablePropsType {
-      let parsed: ColumnsTablePropsType  = {};
+    /**
+     * @var {SortingType}
+     */
+    const typeSorting: SortingType = {
+      none: 'desc',
+      desc: 'asc',
+      asc: 'none',
+    };
 
-      Object.keys(props.columnsTable).forEach(column => {
-        parsed[column] = {
+    /**
+     * Function to assign dynamical property to colums.
+     * @private
+     * @returns {ColumnsTablePropsType}
+     */
+    function assignDynamicalParamToColumns(): ColumnsTablePropsType {
+      const parsed: ColumnsTablePropsType = {};
+
+      Object.keys(props.columnsTable).forEach((column: string) => {
+        parsed[column] = Object.assign({
           ...props.columnsTable[column],
           isVisible: true,
-        };
+        }, props.columnsTable[column]?.canSorting ? {
+          canSorting: 'none',
+        } : {});
       });
 
       return parsed;
@@ -97,7 +119,9 @@ export default defineComponent({
     /**
      * @var {ColumnsTablePropsType}
      */
-    const parsedColumnsTable: ColumnsTablePropsType = reactive<ColumnsTablePropsType>(__assignDynamicalParamToColumns());
+    const parsedColumnsTable: ColumnsTablePropsType = reactive<ColumnsTablePropsType>(
+      assignDynamicalParamToColumns(),
+    );
 
     /**
      * Function to assign row to delete.
@@ -108,7 +132,7 @@ export default defineComponent({
       if (value) {
         selectedRows.value.push(uuid);
       } else {
-        selectedRows.value = selectedRows.value.filter(item => item !== uuid);
+        selectedRows.value = selectedRows.value.filter((item: string) => item !== uuid);
       }
     }
 
@@ -122,19 +146,40 @@ export default defineComponent({
     };
 
     /**
-     * Function to handle dynamical component.
-     * @param {String | Null} type
-     * @returns 
+     * Function handle sort by current column.
+     * @param {String} columnKey
      */
-    function handleTypeOfColumn(type: string | null): any {
-      return type ? columnstType[type] : columnstType['text'];
+    function handleSortColumn(columnKey: string): void {
+      Object.keys(parsedColumnsTable).forEach((index: string) => {
+        if (parsedColumnsTable[index].canSorting && index !== columnKey) {
+          parsedColumnsTable[index].canSorting = 'none';
+        }
+      });
+
+      parsedColumnsTable[columnKey].canSorting = typeSorting[parsedColumnsTable[columnKey]
+        .canSorting as string];
+
+      emit('handleSortList', {
+        field: columnKey,
+        type: parsedColumnsTable[columnKey].canSorting?.toString().toUpperCase(),
+      });
     }
 
-    return  {
+    /**
+     * Function to handle dynamical component.
+     * @param {String | Null} type
+     * @returns
+     */
+    function handleTypeOfColumn(type: string | null): any {
+      return type ? columnstType[type] : columnstType.text;
+    }
+
+    return {
       selectedRows,
+      handleSortColumn,
       parsedColumnsTable,
       handleTypeOfColumn,
       handleAssignRowToDelete,
     };
-   },
+  },
 });

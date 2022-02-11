@@ -2,7 +2,7 @@
   &__wrapper
     width: 100%
     display: flex
-    align-items: center
+    align-items: baseline
 
   &__header
     width: 100%
@@ -13,16 +13,24 @@
     float: left
     display: none
     font-weight: 400
+    user-select: none
     padding: 0.625rem
     font-size: 0.875rem
     width: var(--width-column)
+    justify-content: space-between
     background: lighten($primary-disabled-color, 20%)
     border-top: 1px solid lighten($primary-disabled-color, 15%)
     border-right: 1px solid lighten($primary-disabled-color, 15%)
     border-bottom: 1px solid lighten($primary-disabled-color, 15%)
 
     &--visible
-      display: block
+      display: flex
+
+    &--sorting
+      cursor: pointer
+
+    &--sorted
+      background: lighten($primary-main-color, 40%)
 
   &__columnsVisiblity
     display: flex
@@ -86,15 +94,18 @@
     border-bottom: 1px solid lighten($primary-disabled-color, 15%)
 
   &__actionsItem
-    width: 3.4375rem
     display: flex
+    width: 3.4375rem
     font-weight: 400
-    padding: 0.625rem
+    padding: 0.596rem
     align-items: center
     font-size: 0.875rem
     grid-column-gap: 0.5rem
     border-right: 1px solid lighten($primary-disabled-color, 15%)
     border-bottom: 1px solid lighten($primary-disabled-color, 15%)
+
+    &:last-child
+      border-bottom: 18px solid #f1f1f1
 
   &__settingsHeader
     width: 1.875rem
@@ -117,6 +128,9 @@
     border-left: 1px solid lighten($primary-disabled-color, 15%)
     border-bottom: 1px solid lighten($primary-disabled-color, 15%)
 
+    &:last-child
+      border-bottom: 18px solid #f1f1f1
+
   &__settingsIcon
     width: 21px
     display: flex
@@ -138,6 +152,8 @@
     justify-content: center
 
     &--update
+      width: 1.25rem
+      height: 1.25rem
       border-radius: 0.25rem
       background: $white-color
       border: 0.0625rem solid darken($primary-warning-color, 10%)
@@ -152,6 +168,8 @@
           fill: $white-color !important
 
     &--delete
+      width: 1.25rem
+      height: 1.25rem
       border-radius: 0.25rem
       background: $white-color
       border: 0.0625rem solid darken($primary-error-color, 10%)
@@ -166,5 +184,11 @@
           fill: $white-color !important
 
   &__actionIcon
-    width: 1rem
-    height: 1rem
+    display: flex
+    width: 0.75rem
+    height: 0.75rem
+    align-items: center
+
+  &__headerIcon
+    width: 0.75rem
+    height: 0.75rem

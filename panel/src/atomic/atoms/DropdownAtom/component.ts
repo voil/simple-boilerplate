@@ -50,7 +50,7 @@ export default defineComponent({
     function handleHideDropdown(): void {
       setTimeout(() => {
         isOverlayerVisible.value = false;
-      }, 100);
+      }, 200);
     }
 
     return {
