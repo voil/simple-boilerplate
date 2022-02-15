@@ -7,7 +7,7 @@ export enum ListsEnum {
 
 export type OffsetType = {
   page: number;
-  limit: string | number;
+  [limit: string]: string | number;
 };
 
 export type SortOrderType = {

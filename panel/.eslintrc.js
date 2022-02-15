@@ -28,7 +28,9 @@ module.exports = {
     'camelcase': 'off',
     'no-lone-blocks': 'off',
     'no-shadow': 'off',
-    'prefer-object-spread': 'off'
+    'prefer-object-spread': 'off',
+    'no-param-reassign': 'off',
+    '@typescript-eslint/no-explicit-any': 'off'
   },
   overrides: [{
     files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],

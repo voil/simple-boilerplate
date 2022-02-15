@@ -1,4 +1,5 @@
 import { reactive } from 'vue';
+import { OffsetType, SortOrderType } from '@/utils/types';
 
 /**
  * @var {TeamType}
@@ -28,11 +29,17 @@ type UserType = {
 export type UsersType = {
   records: UserType[];
   total: number;
+  offset: OffsetType;
+  order?: SortOrderType;
 };
 
 const store: UsersType = reactive<UsersType>({
   records: [],
   total: 0,
+  offset: {
+    page: 1,
+    limit: 25,
+  },
 });
 
 export default store;

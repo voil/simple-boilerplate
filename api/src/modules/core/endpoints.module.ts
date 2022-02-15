@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from './config.module';
 import { GraphQLModule } from '@nestjs/graphql';
+import { hDecryptString } from '../../support/helpers';
 import { ConfigService } from './services/config.service';
 import SessionMiddleware from '../../support/middlewares/sessions.middleware';
 import { ExceptionsHandler } from '../../support/handlers/exceptions.handler';
@@ -10,7 +11,7 @@ import { ForbiddenException } from '../../support/handlers/forbidden.handler';
  * EndpointsModule
  * Endpoints module to initizalize graphql.
  *
-
+ * @author Przemysław Drzewicki <przemyslaw.drzewicki@gmail.com>
  */
 @Module({
   imports: [
@@ -34,10 +35,15 @@ import { ForbiddenException } from '../../support/handlers/forbidden.handler';
             onConnect: (_, ws: any) => {
               return new Promise(res =>
                 SessionMiddleware(ws.upgradeReq, { } as any, async () => {
-                  if(!ws.upgradeReq.session.currentLoggedUser) {
+                  if(!ws.upgradeReq.session.currentLoggedUserToken) {
                     new ForbiddenException();
                   }
-                  res({ loggedUser: ws.upgradeReq.session.currentLoggedUser });
+
+                  const unhashed = hDecryptString(
+                    ws.upgradeReq.session.currentLoggedUserToken,
+                  ).split('|');
+
+                  res({ loggedUser: unhashed[2] });
                 }),
               );
             },

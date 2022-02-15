@@ -12,6 +12,7 @@
   &__headerItem
     float: left
     display: none
+    height: 1.375rem
     font-weight: 400
     user-select: none
     padding: 0.625rem
@@ -25,6 +26,7 @@
 
     &--visible
       display: flex
+      align-items: center
 
     &--sorting
       cursor: pointer
@@ -72,6 +74,7 @@
   &__dataItem
     float: left
     display: none
+    height: 1.375rem
     font-weight: 400
     padding: 0.625rem
     font-size: 0.875rem
@@ -84,9 +87,12 @@
       align-items: center
 
   &__actionsHeader
+    display: flex
+    height: 1.375rem
     width: 3.4375rem
     font-weight: 400
     padding: 0.625rem
+    align-items: center
     font-size: 0.875rem
     background: lighten($primary-disabled-color, 20%)
     border-top: 1px solid lighten($primary-disabled-color, 15%)
@@ -95,9 +101,10 @@
 
   &__actionsItem
     display: flex
+    height: 1.375rem
     width: 3.4375rem
     font-weight: 400
-    padding: 0.596rem
+    padding: 0.625rem
     align-items: center
     font-size: 0.875rem
     grid-column-gap: 0.5rem
@@ -109,6 +116,7 @@
 
   &__settingsHeader
     width: 1.875rem
+    height: 1.375rem
     font-weight: 400
     padding: 0.625rem
     font-size: 0.875rem
@@ -120,8 +128,8 @@
   &__settingsItem
     display: flex
     width: 1.875rem
+    height: 1.375rem
     font-weight: 400
-    height: 1.3125rem
     padding: 0.625rem
     font-size: 0.875rem
     justify-content: center

@@ -20,7 +20,6 @@ async function bootstrap() {
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   app.use(cookieParser());
   app.use(SessionMiddleware);
-  app.useLogger(app.get(LogService));
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   await app.listen(3000);
 }

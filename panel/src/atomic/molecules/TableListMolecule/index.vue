@@ -3,7 +3,9 @@
     <div class="TableListMolecule__selected">
       Number of selected rows: {{ selectedRows.length }}
       <DividerAtom divider-type="vertical" />
-      <LinkAtom :link-type="selectedRows.length === 0 ? 'disabled' : 'error'">
+      <LinkAtom
+        @click="selectedRows.length === 0 ? null : $emit('handleDeleteElements', selectedRows)"
+        :link-type="selectedRows.length === 0 ? 'disabled' : 'error'">
         delete selected rows
       </LinkAtom>
     </div>
@@ -31,7 +33,8 @@
         <div :key="`dataSettings_${index}`"
           class="TableListMolecule__settingsItem"
           v-for="(row, index) in dataTable">
-          <CheckboxAtom @handleChangeValue="(value) => handleAssignRowToDelete(value, row.uuid)"/>
+          <CheckboxAtom v-if="row.canDelete"
+            @handleChangeValue="(value) => handleAssignRowToDelete(value, row.uuid)"/>
         </div>
       </div>
       <div class="TableListMolecule__content">
@@ -82,7 +85,9 @@
           <div class="TableListMolecule__action TableListMolecule__action--update">
             <IconAtom class="TableListMolecule__actionIcon" name="edit" />
           </div>
-          <div class="TableListMolecule__action TableListMolecule__action--delete">
+          <div v-if="row.canDelete"
+            @click="$emit('handleDeleteElements', [row.uuid])"
+            class="TableListMolecule__action TableListMolecule__action--delete">
             <IconAtom class="TableListMolecule__actionIcon" name="delete" />
           </div>
         </div>

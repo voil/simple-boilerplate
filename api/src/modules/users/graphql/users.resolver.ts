@@ -69,7 +69,7 @@ export class UsersResolver extends BaseResolver {
     context,
   ): AsyncIterator<unknown, any, undefined> {
     return this.pubSub.asyncIterator(
-      `channelhHandleUsersSubscription_${context.connection.context.loggedUser.account.id}`,
+      `channelhHandleUsersSubscription_${context.connection.context.loggedUser}`,
     );
   }
 
@@ -102,7 +102,12 @@ export class UsersResolver extends BaseResolver {
       records: this.getRecordsForPage(
         records,
         params.offset as OffsetTypeInterface,
-      ),
+      ).map((record) => {
+        return {
+          ...record,
+          canDelete: record.teams.length === 0 && record.uuid !== loggedUser.uuid
+        };
+      }),
     };
   }
 
@@ -192,29 +197,39 @@ export class UsersResolver extends BaseResolver {
     @Args('params') params: DeleteUserArgs,
     @CurrentLoggedUser() loggedUser: Users,
   ): Promise<ResponseEndpointInterface> {
-    const { record, cache } = await this.getUserRecordByUuid(
-      params.uuid,
-      loggedUser,
-    );
 
-    if (record.uuid === loggedUser.uuid) {
-      throw new CustomException(`cannotDelete`);
-    }
-    if (record.teams.length > 0) {
-      throw new CustomException(
-        `assignedToTeam`,
-      );
-    }
+    params.records.forEach(async (uuid: string) => {
+      try {
+        const { record, cache } = await this.getUserRecordByUuid(
+          uuid,
+          loggedUser,
+        );
+      
+        if (record.uuid === loggedUser.uuid) {
+          throw new CustomException(`cannotDelete`);
+        }
+        if (record.teams.length > 0) {
+          throw new CustomException(
+            `assignedToTeam`,
+          );
+        }
 
-    this.usersService.deleteUser(record.uuid);
-    const records = cache.filter(user => user.uuid != params.uuid);
-    this.cacheManager.set(this.getCacheName(loggedUser), records, null);
+        this.usersService.deleteUser(record.uuid);
+        const records = cache.filter(user => user.uuid != uuid);
 
-    this.publishSubscription(records, loggedUser);
+        this.setRecordsToCacheStatic(
+          loggedUser,
+          records,
+        );
+
+        this.publishSubscription(records, loggedUser);
+      } catch (error) {
+        // ...
+      }
+    });
 
     return {
-      total: 1,
-      record,
+      total: params.records.length,
     };
   }
 

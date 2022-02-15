@@ -155,4 +155,22 @@ export abstract class BaseResolver {
       null,
     );
   }
+
+  /**
+   * Method to set list to cache static.
+   * @params Users loggedUser
+   * @params Array<T>
+   * @return Promise<void>
+   */
+  protected async setRecordsToCacheStatic(
+    loggedUser: Users | null = null,
+    list: Array<any>,
+    cacheName?: string | null,
+  ): Promise<void> {
+    await this.cacheManager.set(
+      this.getCacheName(loggedUser, cacheName),
+      list,
+      null,
+    );
+  }
 }

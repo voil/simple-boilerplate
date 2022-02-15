@@ -34,6 +34,9 @@ export class UsersType {
 
   @Field(type => [UserTeamsType], { nullable: true, description: `Teams of users records.` })
   teams?: UserTeamsType[];
+
+  @Field(type => Boolean, { nullable: true, description: `If can remove user.` })
+  canDelete?: boolean;
 }
 
 

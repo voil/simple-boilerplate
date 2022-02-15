@@ -50,7 +50,7 @@ export class LoginResolver {
     }
 
     const sessionCreated = await this.usersSessionService.createSession(user);
-    session.currentLoggedUserToken = hCryptString(`${sessionCreated.uuid}|${user.id}`);
+    session.currentLoggedUserToken = hCryptString(`${sessionCreated.uuid}|${user.id}|${user.account.id}`);
 
     session.save();
     return { state: true };

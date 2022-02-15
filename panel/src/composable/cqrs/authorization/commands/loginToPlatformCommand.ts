@@ -1,4 +1,4 @@
-import Command, { CommandInterface } from '@/services/cqrs/command';
+import Command from '@/services/cqrs/command';
 
 /**
  * @interface {LoginToPlatformCommandInterface}

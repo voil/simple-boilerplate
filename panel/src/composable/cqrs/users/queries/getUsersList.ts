@@ -15,6 +15,7 @@ export default class GetUsersList extends Query {
           is_active
           created_at
           updated_at
+          canDelete
           profile {
             uuid
           }

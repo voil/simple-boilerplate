@@ -1,6 +1,7 @@
 import {
+  ref,
+  Ref,
   computed,
-  reactive,
   onMounted,
   ComputedRef,
   defineComponent,
@@ -10,7 +11,7 @@ import Store from '@/composable/store';
 import { OffsetType, SortOrderType } from '@/utils/types';
 import { PayloadStoreType } from '@/composable/store/store';
 import { UsersType } from '@/composable/store/modules/usersStore';
-import UserListStateMachines, { UserListParamsType } from '@/composable/store/machines/users/userListStateMachines';
+import UserListStateMachines from '@/composable/store/machines/users/userListStateMachines';
 
 type ColumnsTablePropsType = {
   [key: string]: {
@@ -34,6 +35,7 @@ export default defineComponent({
     PageListSizerAtom: defineAsyncComponent(() => import('@/atomic/atoms/PageListSizerAtom/index.vue')),
     PaginationListAtom: defineAsyncComponent(() => import('@/atomic/atoms/PaginationListAtom/index.vue')),
     TableListMolecule: defineAsyncComponent(() => import('@/atomic/molecules/TableListMolecule/index.vue')),
+    PopoverConfirmMolecule: defineAsyncComponent(() => import('@/atomic/molecules/PopoverConfirmMolecule/index.vue')),
   },
 
   /**
@@ -54,12 +56,19 @@ export default defineComponent({
     const usersListFromStore: ComputedRef<PayloadStoreType<UsersType> | null> = computed(() => Store.get('users'));
 
     /**
-     * @var {OffsetType}
+     * @var {Ref<boolean>}
      */
-    const offset: OffsetType = reactive<OffsetType>({
-      page: 1,
-      limit: 25,
-    });
+    const isPopoverConfirmVisible: Ref<boolean> = ref<boolean>(false);
+
+    /**
+     * @var {Ref<string[]>}
+     */
+    const elementsToDelete: Ref<string[]> = ref<string[]>([]);
+
+    /**
+     * @var {ComputedRef<OffsetType>}
+     */
+    const offset: ComputedRef<OffsetType> = computed(() => Store.get('users')?.offset);
 
     /**
      * @var {ColumnsTablePropsType}
@@ -101,12 +110,16 @@ export default defineComponent({
      * Function to get user list.
      */
     function getUserList(): void {
-      UserListStateMachines.setState('pending', {
-        offset: {
-          ...offset,
-          limit: `L${offset.limit}`,
-        },
-      });
+      UserListStateMachines.setState('pending');
+    }
+
+    /**
+     * Function to handle remove elements.
+     * @param {String[]} elements
+     */
+    function handleDeleteElements(elements: string[]): void {
+      isPopoverConfirmVisible.value = true;
+      elementsToDelete.value = elements;
     }
 
     /**
@@ -114,14 +127,11 @@ export default defineComponent({
      * @param {SortOrderType} order
      */
     function handleSortList(order: SortOrderType): void {
-      UserListStateMachines.setState('pending', Object.assign({
-        offset: {
-          page: 1,
-          limit: `L${offset.limit}`,
-        },
-      }, order.type !== 'NONE' ? {
-        order,
-      } : {}) as UserListParamsType);
+      Store.commit('users', {
+        order: order.type !== 'NONE' ? order : null,
+      });
+
+      getUserList();
     }
 
     /**
@@ -129,7 +139,12 @@ export default defineComponent({
      * @param {Number} page
      */
     function handleChangePage(page: number): void {
-      offset.page = page;
+      Store.commit('users', {
+        offset: {
+          ...Store.get('users')?.offset,
+          page,
+        },
+      });
       getUserList();
     }
 
@@ -138,9 +153,22 @@ export default defineComponent({
      * @param {Number} size
      */
     function handleChangeLimitOffsetList(size: number): void {
-      offset.limit = size;
-      offset.page = 1;
+      Store.commit('users', {
+        offset: {
+          page: 1,
+          limit: size,
+        },
+      });
       getUserList();
+    }
+
+    /**
+     * Function to handle confirm delete elements list.
+     */
+    async function handleConfirmDeleteAction(): Promise<void> {
+      await UserListStateMachines.setState('pendingDelete', elementsToDelete.value);
+      elementsToDelete.value = [];
+      isPopoverConfirmVisible.value = false;
     }
 
     /**
@@ -155,6 +183,9 @@ export default defineComponent({
       handleChangePage,
       curretntStateList,
       usersListFromStore,
+      handleDeleteElements,
+      isPopoverConfirmVisible,
+      handleConfirmDeleteAction,
       handleChangeLimitOffsetList,
     };
   },

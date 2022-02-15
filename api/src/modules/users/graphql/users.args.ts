@@ -5,6 +5,7 @@ import { IsPassword } from '../../../support/validators/password.validator';
 import {
   IsUUID,
   IsEmail,
+  IsArray,
   IsString,
   MinLength,
   MaxLength,
@@ -76,9 +77,9 @@ export class DetailsUsersArgs {
  */
 @InputType()
 export class DeleteUserArgs {
-  @Field({ nullable: false })
-  @IsUUID()
-  uuid: string;
+  @Field(() => [String], { nullable: false })
+  @IsArray()
+  records: Array<String>;
 }
 
 /**

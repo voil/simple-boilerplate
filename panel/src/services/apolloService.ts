@@ -118,7 +118,7 @@ class ApolloService implements ApolloServiceInterface {
         ${subscription}
       `,
       variables: params,
-      fetchPolicy: 'network-only' as FetchPolicy,
+      fetchPolicy: 'no-cache' as FetchPolicy,
     }).subscribe({
       next(response: any) {
         if (callback) {
@@ -134,7 +134,6 @@ class ApolloService implements ApolloServiceInterface {
    * @return ApolloClient<NormalizedCacheObject>
    */
   private createApolloClient(): ApolloClient<NormalizedCacheObject> {
-    console.log('create');
     return new ApolloClient({
       link: this.createSplitLinktForSubscriptions(
         this.createMiddlewareCatchErrorResponse()
