@@ -1,13 +1,16 @@
 <template>
-  <div :class="`NotificationMessageAtom NotificationMessageAtom--${notificationType}`">
+  <div :class="`NotificationMessageAtom NotificationMessageAtom--${notificationType}`"
+    data-testid="notificationMessageAtomInstance">
     <component class="NotificationMessageAtom__icon" :is="iconInstance" />
     <div class="NotificationMessageAtom__content">
       <h3 v-if="notificationTitle"
-        class="NotificationMessageAtom__title">
+        class="NotificationMessageAtom__title"
+        data-testid="notificationMessageTitleAtomInstance">
         {{ notificationTitle }}
       </h3>
       <p v-if="notificationDescription"
-        class="NotificationMessageAtom__description">
+        class="NotificationMessageAtom__description"
+        data-testid="notificationMessageDescriptionAtomInstance">
         {{ notificationDescription }}
       </p>
     </div>

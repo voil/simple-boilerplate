@@ -40,6 +40,7 @@ export default {
     },
   },
   parameters: {
+    jest: ['notificationMessageAtom.spec.ts'],
     docs: {
       description: {
         component: 'Component atom notification message.',
