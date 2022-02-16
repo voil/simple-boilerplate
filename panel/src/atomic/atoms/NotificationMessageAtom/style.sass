@@ -1,0 +1,66 @@
+.NotificationMessageAtom
+  right: 1.25rem
+  display: flex
+  position: fixed
+  align-items: center
+  max-width: 21.875rem
+  border-radius: 0.25rem
+  padding: 0.9375rem 1.25rem
+  grid-column-gap: 0.625rem
+  box-shadow: 0 0.3125rem 0.625rem -0.3125rem rgb(0 0 0 / 50%)
+  animation: fadeInNotificationMessage .3s
+
+  @keyframes fadeInNotificationMessage
+    from
+      top: -1.25rem
+      opacity: 0
+
+    to
+      opacity: 1
+      top: 1.25rem
+
+  &__icon
+    width: 2rem
+    height: 2rem
+
+  &__title
+    padding: 0
+    font-weight: 400
+    font-size: 1.125rem
+    margin: 0 0 0.3125rem
+
+  &__description
+    margin: 0
+    padding: 0
+    font-weight: 300
+    font-size: 0.75rem
+    line-height: 1rem
+
+  &__content
+    flex: 1
+
+  &--success
+    background: lighten($primary-success-color, 40%)
+    border: 0.0625rem solid $primary-success-color
+
+    .NotificationMessageAtom__title
+      color: darken($primary-success-color, 30%)
+
+    .NotificationMessageAtom__description
+      color: darken($primary-success-color, 30%)
+
+    .NotificationMessageAtom__icon
+      fill: darken($primary-success-color, 30%)
+
+  &--error
+    background: lighten($primary-error-color, 40%)
+    border: 0.0625rem solid $primary-error-color
+
+    .NotificationMessageAtom__title
+      color: darken($primary-error-color, 30%)
+
+    .NotificationMessageAtom__description
+      color: darken($primary-error-color, 30%)
+
+    .NotificationMessageAtom__icon
+      fill: darken($primary-error-color, 30%)
