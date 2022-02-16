@@ -35,7 +35,8 @@
         ...
     </div>
     <div v-if="pageSize * 5 < totalCount && (currentPage + 2 < countOfPages)"
-      class="PaginationListAtom__button">
+      class="PaginationListAtom__button"
+      @click="handleChangePage(countOfPages)">
       {{ countOfPages }}
     </div>
     <div :class="['PaginationListAtom__button', {
