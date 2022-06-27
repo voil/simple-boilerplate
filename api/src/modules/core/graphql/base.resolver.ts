@@ -87,6 +87,7 @@ export abstract class BaseResolver {
     service: BaseService,
     where: ObjectLiteral = {},
   ): Promise<Array<any>> {
+    //await this.cacheManager.reset();
     const cache = await this.cacheManager.get(this.getCacheName(loggedUser));
     if (!cache) {
       await this.setRecordsToCache(loggedUser, service, where);

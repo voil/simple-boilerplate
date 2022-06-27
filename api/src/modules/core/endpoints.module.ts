@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from './config.module';
 import { GraphQLModule } from '@nestjs/graphql';
+import * as redisStore from 'cache-manager-redis-store';
 import { ConfigService } from './services/config.service';
 import SessionMiddleware from '../../support/middlewares/sessions.middleware';
 import { ExceptionsHandler } from '../../support/handlers/exceptions.handler';

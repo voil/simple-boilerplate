@@ -40,6 +40,6 @@ export class UsersAccounts extends BaseEntity {
     () => UsersSessions,
     session => session.account,
   )
-  @JoinColumn({ name: 'fk_user_account_id' })
+  @JoinColumn({ name: 'id' })
   session: UsersSessions;
 }
