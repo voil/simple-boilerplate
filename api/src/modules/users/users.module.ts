@@ -58,6 +58,17 @@ import {CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
   ],
 })
 export class UsersModule {
+  /**
+   * @var String
+   */
+  #nameCache: string = 'USERS_CACHE_';
+
+  /**
+   * Constructor of class
+   * @param UsersService usersService
+   * @param UsersAccountsService usersAccountsService
+   * @param Cache cacheManager
+   */
   constructor(
     protected usersService: UsersService,
     protected usersAccountsService: UsersAccountsService,
@@ -67,14 +78,14 @@ export class UsersModule {
       const response = await this.usersAccountsService.getList();
       response.forEach(async item => {
         await this.cacheManager.set(
-          `USERS_CACHE_${item.id}`,
+          `${this.#nameCache}${item.id}`,
           await usersService.getList({
             account: item.id,
             deleted_at: IsNull(),
           }),
           null,
         );
-        console.log(`CACHE USERS FOR ACCOUNT ${item.id} SET`);
+        console.log('\x1b[36m%s\x1b[0m', `CACHE USERS FOR ACCOUNT ${item.id} SET`);
       });
     })();
   }

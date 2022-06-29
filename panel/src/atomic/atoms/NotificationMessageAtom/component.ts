@@ -13,7 +13,6 @@ type PropsComponentType = {
   notificationType: string;
 }
 
-
 /**
  * NotificationMessageAtom
  * Component atom notification message.
@@ -59,7 +58,7 @@ export default defineComponent({
    * @param Readonly<PropsComponentType> props
    * @returns Record<string, unknown>
    */
-   setup(props: Readonly<PropsComponentType>) {
+  setup(props: Readonly<PropsComponentType>) {
     const iconInstance: Ref<null | string> = shallowRef<null | string>(null);
 
     /**

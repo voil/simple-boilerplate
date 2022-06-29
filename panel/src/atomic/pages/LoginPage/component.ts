@@ -2,6 +2,7 @@ import {
   defineComponent,
   defineAsyncComponent,
 } from 'vue';
+import NotificationService from '@/services/notificationService';
 
 /**
  * Login
