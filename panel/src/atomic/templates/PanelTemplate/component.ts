@@ -36,7 +36,7 @@ export default defineComponent({
      * @var {Router}
      */
     const router: Router = useRouter();
-    
+
     /**
      * @var {Ref<string>}
      */

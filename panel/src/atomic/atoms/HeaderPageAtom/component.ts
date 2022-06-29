@@ -23,7 +23,7 @@ export default defineComponent({
      * Prop for description header.
      * @type {String}
      */
-     headerDescription: {
+    headerDescription: {
       type: String,
       default: null,
     },

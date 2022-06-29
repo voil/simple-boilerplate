@@ -27,6 +27,7 @@ module.exports = {
     '@typescript-eslint/ban-types': 'off',
     'camelcase': 'off',
     'no-lone-blocks': 'off',
+    'no-unused-expressions': 'off',
   },
   overrides: [{
     files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],
