@@ -119,7 +119,7 @@ export default defineComponent({
      */
     function handleDeleteElements(elements: string[]): void {
       isPopoverConfirmVisible.value = true;
-      elementsToDelete.value = elements;
+      elementsToDelete.value = [...elements];
     }
 
     /**

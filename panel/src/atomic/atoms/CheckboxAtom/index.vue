@@ -1,6 +1,5 @@
 <template>
-  <div class="CheckboxAtom"
-  >
+  <div class="CheckboxAtom">
     <input
       type="checkbox"
       @input="handleInput"
@@ -13,11 +12,10 @@
       data-testid="checkboxAtomInstance"
     />
     <span :class="`
-      CheckboxAtom__marker
-      CheckboxAtom__marker--${inputType}
-    `"
-    data-testid="checkboxMarkerAtomInstance"
-    />
+        CheckboxAtom__marker
+        CheckboxAtom__marker--${inputType}
+      `"
+      data-testid="checkboxMarkerAtomInstance" />
   </div>
 </template>
 <script src="./component.ts" lang="ts"/>

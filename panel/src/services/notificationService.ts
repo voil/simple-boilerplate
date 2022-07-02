@@ -55,6 +55,15 @@ class NotificationService implements NotificationServiceInterface {
 
     wrapper.appendChild(instance.$el);
     document.body.appendChild(wrapper);
+
+    this.#removeNotification();
+  }
+
+  /**
+   * Method to remove visible notification.
+   */
+  #removeNotification(): void {
+    setTimeout(() => this.#removeOldInstance(), 3000);
   }
 
   /**
@@ -94,6 +103,7 @@ class NotificationService implements NotificationServiceInterface {
     wrapper.style.position = 'absolute';
     wrapper.style.top = '20px';
     wrapper.style.right = '20px';
+    wrapper.style.zIndex = '1000';
 
     return wrapper;
   }

@@ -30,7 +30,7 @@ import {CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
       imports: [ConfigModule.register()],
       useFactory: async (configService: ConfigService) => {
         return  {
-          ttl: 60,
+          ttl: 0,
           // store: redisStore,
           // host: configService.get('REDIS_HOST'),
           // port: parseInt(configService.get('REDIS_PORT'), 10),

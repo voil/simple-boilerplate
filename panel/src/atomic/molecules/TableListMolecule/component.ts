@@ -1,8 +1,8 @@
 import {
-  ref,
-  Ref,
   reactive,
   PropType,
+  computed,
+  ComputedRef,
   defineComponent,
   defineAsyncComponent,
 } from 'vue';
@@ -84,11 +84,6 @@ export default defineComponent({
    */
   setup(props: Readonly<PropsComponentType>, { emit }): Record<string, unknown> {
     /**
-     * @var {Ref<string[]>}
-     */
-    const selectedRows: Ref<string[]> = ref<string[]>([]);
-
-    /**
      * @var {SortingType}
      */
     const typeSorting: SortingType = {
@@ -96,6 +91,14 @@ export default defineComponent({
       desc: 'asc',
       asc: 'none',
     };
+
+    /**
+     * Computed property get selected row for deleted.
+     * @var {ComputedRef<string[]>}
+     */
+    const selectedRows: ComputedRef<string[]> = computed(() => props.dataTable
+      .filter((row) => row.selected)
+      .map((row) => row.uuid));
 
     /**
      * Function to assign dynamical property to colums.
@@ -123,19 +126,6 @@ export default defineComponent({
     const parsedColumnsTable: ColumnsTablePropsType = reactive<ColumnsTablePropsType>(
       assignDynamicalParamToColumns(),
     );
-
-    /**
-     * Function to assign row to delete.
-     * @param {Boolean} value
-     * @param {String} uuid
-     */
-    function handleAssignRowToDelete(value: boolean, uuid: string) {
-      if (value) {
-        selectedRows.value.push(uuid);
-      } else {
-        selectedRows.value = selectedRows.value.filter((item: string) => item !== uuid);
-      }
-    }
 
     /**
      * @var {TypesComponentColumsType}
@@ -180,7 +170,6 @@ export default defineComponent({
       handleSortColumn,
       parsedColumnsTable,
       handleTypeOfColumn,
-      handleAssignRowToDelete,
     };
   },
 });

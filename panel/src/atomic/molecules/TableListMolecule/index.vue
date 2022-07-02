@@ -34,7 +34,7 @@
           class="TableListMolecule__settingsItem"
           v-for="(row, index) in dataTable">
           <CheckboxAtom v-if="row.canDelete"
-            @handleChangeValue="(value) => handleAssignRowToDelete(value, row.uuid)"/>
+            v-model="row.selected" />
         </div>
       </div>
       <div class="TableListMolecule__content">

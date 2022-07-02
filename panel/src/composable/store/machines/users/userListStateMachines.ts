@@ -34,15 +34,23 @@ machine.addState<string[]>('pendingDelete',
  * State for show success delete record.
  */
 machine.addState('successDelete', async () => {
-  // ...
   machine.setState('pending');
+  const notificiationService = (await import('@/services/notificationService')).default;
+  notificiationService.success({
+    title: 'Success delete',
+    description: 'User successfully deleted',
+  });
 });
 
 /**
  * State for show error delete record.
  */
 machine.addState('errorDelete', async () => {
-  // ...
+  const notificiationService = (await import('@/services/notificationService')).default;
+  notificiationService.success({
+    title: 'Error delete',
+    description: 'User error deleted',
+  });
 });
 
 /**
@@ -57,6 +65,12 @@ machine.addState<UserListParamsType>('pending', async () => {
     order: Store.get('users')?.order,
   }));
 
+  if (response) {
+    response.records = response.records.map((record) => {
+      record.selected = false;
+      return record;
+    });
+  }
   Store.commit('users', response);
   machine.setState('default');
 });

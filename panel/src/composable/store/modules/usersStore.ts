@@ -24,6 +24,7 @@ type UserType = {
   teams: TeamType[];
   updated_at: string;
   uuid: string;
+  selected: boolean;
 }
 
 export type UsersType = {
