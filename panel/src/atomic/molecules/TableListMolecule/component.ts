@@ -134,6 +134,7 @@ export default defineComponent({
       text: defineAsyncComponent(() => import('@/atomic/atoms/TextElementWrapperAtom/index.vue')),
       time: defineAsyncComponent(() => import('@/atomic/atoms/TimeElementWrapperAtom/index.vue')),
       boolean: defineAsyncComponent(() => import('@/atomic/atoms/BooleanElementWrapperAtom/index.vue')),
+      relation: defineAsyncComponent(() => import('@/atomic/organisms/RelationElementWrapperOrganism/index.vue')),
     };
 
     /**

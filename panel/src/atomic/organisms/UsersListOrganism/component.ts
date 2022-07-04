@@ -87,6 +87,11 @@ export default defineComponent({
         label: 'E-mail',
         width: 250,
       },
+      profile: {
+        label: 'Teams',
+        width: 70,
+        type: 'relation',
+      },
       is_active: {
         label: 'Is active',
         width: 70,
