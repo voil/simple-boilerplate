@@ -4,8 +4,10 @@ import TagAtomComponent from './index.vue';
  * @const string[]
  */
 const TypesArray: string[] = [
+  'info',
   'error',
   'success',
+  'warning',
   'default',
   'disabled',
 ];
@@ -32,6 +34,7 @@ export default {
     },
   },
   parameters: {
+    jest: ['tagAtom.spec.ts'],
     docs: {
       description: {
         component: 'Tag component.',
@@ -51,7 +54,7 @@ export const TagAtom = (args: ComponentPropsType) => ({
     setup() {
       return { args };
     },
-    template: '<TagAtomComponent v-bind="args" />',
+    template: '<TagAtomComponent v-bind="args">Lorem ipsum</TagAtomComponent>',
 });
 
 /**

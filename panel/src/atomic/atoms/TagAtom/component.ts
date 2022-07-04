@@ -14,16 +14,18 @@ export default defineComponent({
   props: {
     /**
      * Prop for type tag.
-     * @values error, default, success, disabled.
+     * @values error, default, success, disabled, warning, info.
      */
     tagType: {
       type: String,
       default: 'default',
       validator(prop: string): boolean {
         return [
+          'info',
           'error',
           'default',
           'success',
+          'warning',
           'disabled',
         ].includes(prop as string);
       },

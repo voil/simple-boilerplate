@@ -1,9 +1,6 @@
 <template>
-  <div :class="`
-    TagAtom
-    TagAtom--${tagType}
-  `"
-  data-testid="tagAtomInstance">
+  <div :class="`TagAtom TagAtom--${tagType}`"
+    data-testid="TagAtomInstance">
     <slot />
   </div>
 </template>
