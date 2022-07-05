@@ -37,7 +37,7 @@ machine.addState('pendingLogout', async () => {
  * State for pending to check is user logged to platform.
  */
 machine.addState('pendingCheckLogged', async (params: PayloadParametersType<LoggedUserParamsType>) => {
-  const response = await QueryDispatcher.execute(new GetLoggedUserQuery());
+  const response = await QueryDispatcher.execute<void|null>(new GetLoggedUserQuery());
 
   machine.setState(!response ? 'logout' : 'login', !response ? {} : response);
   params[!response ? 'handlerError' : 'handlerSuccess']();

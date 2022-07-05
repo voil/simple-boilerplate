@@ -1,8 +1,14 @@
 import {
-  computed,
-  ComputedRef,
+  PropType,
   defineComponent,
 } from 'vue';
+
+/**
+ * @var {ParamsColumnType}
+ */
+type ParamsColumnType = {
+  slot: boolean;
+};
 
 type PropsComponentType = {}
 
@@ -13,20 +19,13 @@ type PropsComponentType = {}
 export default defineComponent({
   name: 'BooleanElementWrapperAtom',
 
-  /**
-   * Main setup method for componenent.
-   * @param Readonly<PropsComponentType> props
-   * @returns Record<string, unknown>
-   */
-   setup(props: Readonly<PropsComponentType>, { slots }): Record<string, unknown> {
+  props: {
     /**
-     * @vat {ComputedRef<string | null | undefined>}
+     * Props for columns params.
      */
-    const typeOfBoolean: ComputedRef<boolean | null | undefined> = computed(() => slots.default
-      ? (slots.default()[0]?.children?.toString().trim() === 'false' ? false : true) : null);
-
-    return {
-      typeOfBoolean,
-    };
-   }
+    paramsColumn: {
+      type: Object as PropType<ParamsColumnType>,
+      default: () => ({}),
+    },
+  },
 });

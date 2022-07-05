@@ -36,9 +36,9 @@
             icon: 'edit',
             label: 'Users'
           },
-          privilages: {
+          profiles: {
             icon: 'edit',
-            label: 'Privilages'
+            label: 'Profiles'
           },
         }"
       @handleClickElementMenu="handleClickElementMenu"

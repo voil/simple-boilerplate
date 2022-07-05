@@ -6,6 +6,7 @@
  */
 export type QueryInterface = {
   getQuery(): string;
+  getParams(): any;
 }
 
 /**
@@ -39,7 +40,15 @@ export abstract class Query implements QueryInterface {
     return this.query;
   }
 
+  /**
+   * Method to get params.
+   * @returns {Any}
+   */
   public getParams(): any {
-    return this.params;
+    return {
+      params: {
+        ...this.params,
+      },
+    };
   }
 }

@@ -1,8 +1,14 @@
 import {
-  computed,
-  ComputedRef,
+  PropType,
   defineComponent,
 } from 'vue';
+
+/**
+ * @var {ParamsColumnType}
+ */
+type ParamsColumnType = {
+  slot: string;
+};
 
 /**
  * @var {PropsComponentType}
@@ -16,26 +22,29 @@ type PropsComponentType = {};
 export default defineComponent({
   name: 'TextElementWrapperAtom',
 
+  props: {
+    /**
+     * Props for columns params.
+     */
+    paramsColumn: {
+      type: Object as PropType<ParamsColumnType>,
+      default: () => ({}),
+    },
+  },
+
   /**
    * Main setup method for componenent.
    * @param Readonly<PropsComponentType> props
    * @returns Record<string, unknown>
    */
-   setup(props: Readonly<PropsComponentType>, { slots }): Record<string, unknown> {
-    /**
-     * @vat {ComputedRef<string | null | undefined>}
-     */
-    const textFromSlot: ComputedRef<string | null | undefined> = computed(() => slots.default
-      ? slots.default()[0]?.children?.toString().trim() : null);
-
+  setup(props: Readonly<PropsComponentType>, { slots }): Record<string, unknown> {
     /**
      * @var {Number}
      */
-    const breakpointText: number = 38;
+    const breakpointText = 38;
 
     return {
-      textFromSlot,
       breakpointText,
     };
-   }
+  },
 });

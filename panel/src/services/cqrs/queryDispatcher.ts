@@ -12,12 +12,27 @@ class QueryDispatcher {
    * @param {QueryInterface} action
    * @return {@returns }
    */
-  public async execute(action: QueryInterface): Promise<void|null> {
+  public async execute<T>(
+    action: QueryInterface,
+    subscription: ((data: any) => void) | null = null,
+  ): Promise<T|null> {
     try {
       const ApolloService = (await import('@/services/apolloService')).default;
       const { hFirstToLower } = await import('@/utils/helpers');
 
-      const response = (await ApolloService.query(action.getQuery())).data;
+      if (subscription) {
+        ApolloService.subscription(action.getQuery(), action.getParams(), (data) => {
+          const response = data.data;
+
+          let match = action.getQuery().match(/query (.*)\(/);
+          match = match && match.length > 0 ? match : action.getQuery().match(/query (.*)\{/);
+
+          subscription(match ? response[hFirstToLower(match[1]).trim()] : null);
+        });
+        return null;
+      }
+
+      const response = (await ApolloService.query(action.getQuery(), action.getParams())).data;
       let match = action.getQuery().match(/query (.*)\(/);
       match = match && match.length > 0 ? match : action.getQuery().match(/query (.*)\{/);
 

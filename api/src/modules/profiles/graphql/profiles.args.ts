@@ -12,7 +12,6 @@ import {
  * ProfilesListArgs
  * Profile list arguments for resolver.
  *
-
  */
 @InputType()
 export class ProfilesListArgs extends RecordsListArgs() {}
