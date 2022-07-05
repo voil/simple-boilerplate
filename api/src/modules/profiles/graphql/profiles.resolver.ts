@@ -26,6 +26,7 @@ import {
 } from '../../../support/interfaces';
 import { UsersService } from '../entities/users.service';
 import { CurrentLoggedUser } from '../../../support/decorators/logged.user.decorator';
+import { cache } from 'ejs';
 
 @Resolver()
 export class ProfilesResolver extends BaseResolver {
@@ -149,31 +150,37 @@ export class ProfilesResolver extends BaseResolver {
     @Args('params') params: DeleteProfileArgs,
     @CurrentLoggedUser() loggedUser: Users,
   ): Promise<ResponseEndpointInterface> {
-    const { record, cache } = await this.getProfileRecordByUuid(
-      params.uuid,
-      loggedUser,
-    );
+    params.records.forEach(async (uuid: string) => {
+      try {
+        const { record, cache } = await this.getProfileRecordByUuid(
+          uuid,
+          loggedUser,
+        );
+    
+        const users = await this.usersService.getList({
+          profile: record.id,
+        });
+    
+        if (users.length > 0) {
+          throw new CustomException(
+            `assignedUser`,
+          );
+        }
+    
+        this.profilesService.deleteProfile(record.uuid);
+    
+        const records = cache.filter(profile => profile.uuid != uuid);
+        this.cacheManager.set(this.getCacheName(loggedUser), records, null);
+    
+        this.publishSubscription(records, loggedUser);
+      } catch(error) {
+        // ...
+      }
 
-    const users = await this.usersService.getList({
-      profile: record.id,
     });
 
-    if (users.length > 0) {
-      throw new CustomException(
-        `assignedUser`,
-      );
-    }
-
-    this.profilesService.deleteProfile(record.uuid);
-
-    const records = cache.filter(profile => profile.uuid != params.uuid);
-    this.cacheManager.set(this.getCacheName(loggedUser), records, null);
-
-    this.publishSubscription(records, loggedUser);
-
     return {
-      total: 1,
-      record,
+      total: params.records.length,
     };
   }
 

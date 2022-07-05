@@ -12,7 +12,6 @@ type PropsComponentType = {
   optionsSizer: number[];
 }
 
-
 /**
  * PageListSizer
  * Component atom page list size.
@@ -28,9 +27,9 @@ export default defineComponent({
       type: Array as PropType<number[]>,
       default: () => ([10, 25, 50, 100]),
       validator(prop: number[]): boolean {
-        const exist = prop.find(size => !Number.isInteger(size));
+        const exist = prop.find((size: number) => !Number.isInteger(size));
         return !exist;
-      }
+      },
     },
   },
 

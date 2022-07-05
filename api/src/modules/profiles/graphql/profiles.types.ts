@@ -5,7 +5,6 @@ import { RecordsListType, RecordType } from '../../core/graphql/base.types';
  * ProfilesType
  * Profiles types.
  *
-
  */
 @ObjectType()
 export class ProfilesType {

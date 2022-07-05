@@ -11,11 +11,11 @@ import {
   IsBoolean,
   IsOptional
 } from 'class-validator';
+
 /**
  * UsersListArgs
  * Users list arguments for resolver.
  *
-
  */
 @InputType()
 export class UsersListArgs extends RecordsListArgs() {}

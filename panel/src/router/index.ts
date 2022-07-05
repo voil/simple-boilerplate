@@ -48,13 +48,13 @@ export const routes: Array<RouteRecordRaw> = [
     component: () => import('@/atomic/pages/TeamsPage/index.vue'),
   },
   {
-    path: '/panel/privilages',
-    name: 'PrivilagesPage',
+    path: '/panel/profiles',
+    name: 'ProfilesPage',
     meta: {
       authentication: true,
       authorizationType: 'after',
     },
-    component: () => import('@/atomic/pages/PrivilagesPage/index.vue'),
+    component: () => import('@/atomic/pages/ProfilesPage/index.vue'),
   },
 ];
 

@@ -13,7 +13,6 @@ type PropsComponentType = {
   totalCount: number;
 }
 
-
 /**
  * PaginationListAtom
  * Component atom pagination list.
