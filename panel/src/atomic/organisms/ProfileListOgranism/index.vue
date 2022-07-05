@@ -6,8 +6,10 @@
         @handleSortList="handleSortList"
         @handleDeleteElements="handleDeleteElements"/>
       <div class="UsersListOrganism__pagination">
-        <PageListSizerAtom @handleChangeSizeList="handleChangeLimitOffsetList" />
-        <PaginationListAtom :current-page="offset.page"
+        <PageListSizerAtom v-if="profilesListFromStore.total > 10"
+          @handleChangeSizeList="handleChangeLimitOffsetList" />
+        <PaginationListAtom v-if="profilesListFromStore.total > offset.limit"
+          :current-page="offset.page"
           :page-size="offset.limit"
           :total-count="profilesListFromStore.total"
           @handleChangePage="handleChangePage"/>

@@ -2,6 +2,7 @@ import { Field, InputType } from '@nestjs/graphql';
 import { RecordsListArgs } from '../../core/graphql/base.args';
 import {
   IsUUID,
+  IsArray,
   IsString,
   MinLength,
   IsBoolean,
@@ -47,9 +48,9 @@ export class CreateProfileArgs {
  */
 @InputType()
 export class DeleteProfileArgs {
-  @Field({ nullable: false })
-  @IsUUID()
-  uuid: string;
+  @Field(() => [String], { nullable: false })
+  @IsArray()
+  records: Array<String>;
 }
 
 /**

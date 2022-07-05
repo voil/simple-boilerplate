@@ -1,8 +1,10 @@
 import Store from '@/composable/store';
+import CommandBus from '@/services/cqrs/commandBus';
 import { OffsetType, SortOrderType } from '@/utils/types';
 import QueryDispatcher from '@/services/cqrs/queryDispatcher';
-import GetProfilesList from '@/composable/cqrs/profiles/getProfilesList';
+import GetProfilesList from '@/composable/cqrs/profiles/queries/getProfilesListQuery';
 import { ProfilesType } from '@/composable/store/modules/profilesStore';
+import DeleteProfileCommand from '@/composable/cqrs/profiles/commands/deleteProfileCommand';
 import StateMachineService, { PayloadParametersType } from '@/services/stateMachineService';
 
 const machine = new StateMachineService('default');
@@ -19,6 +21,37 @@ export type ProfilesListParams = {
  * Main state for machine.
  */
 machine.addState('default');
+
+/**
+ * State for remove element from list.
+ */
+ machine.addState<string[]>('pendingDelete',
+ async (payload: PayloadParametersType<string[]>) => {
+   await CommandBus.handle(new DeleteProfileCommand(payload as string[]));
+ });
+
+/**
+* State for show success delete record.
+*/
+machine.addState('successDelete', async () => {
+ machine.setState('pending');
+ const notificiationService = (await import('@/services/notificationService')).default;
+ notificiationService.success({
+   title: 'Success delete',
+   description: 'Profile successfully deleted',
+ });
+});
+
+/**
+* State for show error delete record.
+*/
+machine.addState('errorDelete', async () => {
+ const notificiationService = (await import('@/services/notificationService')).default;
+ notificiationService.error({
+   title: 'Error delete',
+   description: 'Profile error deleted',
+ });
+});
 
 /**
  * State for pending and submit form (login user to platform).

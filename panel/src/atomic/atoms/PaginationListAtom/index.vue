@@ -20,7 +20,8 @@
     <div :key="`page_${page}`"
       :data-testid="`PaginationListAtomInstance__${page}`"
       v-for="page in Array.from({ length: countOfPages }, (_, i) => i + 1).slice(
-        currentPage - 2 <= 1 ? 0 : (currentPage + 2 >= countOfPages ? (countOfPages - 2) - 3 : currentPage - 3),
+        currentPage - 2 <= 1 ? 0 : (currentPage + 2 >= countOfPages ? (countOfPages - 2) - 3
+          : currentPage - 3),
         currentPage - 2 <= 1 ? 5 : currentPage + 2)"
       :class="['PaginationListAtom__button', {
         'PaginationListAtom__button--active': currentPage === page
@@ -32,7 +33,7 @@
     <div v-if="pageSize * 5 < totalCount && (currentPage + 2 < countOfPages)"
       class="PaginationListAtom__button PaginationListAtom__button--default">
       ...
-    </div> 
+    </div>
     <div v-if="pageSize * 5 < totalCount && (currentPage + 2 < countOfPages)"
       class="PaginationListAtom__button">
       {{ countOfPages }}

@@ -12,7 +12,7 @@ interface ApolloServiceInterface {
     query: string,
     params?: ParamsGraphQLInterface,
     isCacheDisactive?: boolean,
-  ): Promise<ApolloQueryResult<any>>;
+  ): Promise<FetchResult<any, Record<string, any>, Record<string, any>>> 
   mutation(
     mutation: string,
     params?: ParamsGraphQLInterface
@@ -42,7 +42,17 @@ export default class ApolloServiceMock implements ApolloServiceInterface {
     query: string,
     params?: ParamsGraphQLInterface,
     isCacheDisactive?: boolean,
-  ): Promise<ApolloQueryResult<any>> {
+  ): Promise<FetchResult<any, Record<string, any>, Record<string, any>>> {
+    const mock = await this.getMockClass(query, 'query');
+    if (mock) {
+      const response = await mock.handle(params);
+      if (!response.data) {
+        throw new Error(JSON.stringify(response.errors));
+      }
+
+      return response;
+    }
+
     return {} as Promise<ApolloQueryResult<any>>;
   }
 
@@ -59,7 +69,7 @@ export default class ApolloServiceMock implements ApolloServiceInterface {
   ): Promise<FetchResult<any, Record<string, any>, Record<string, any>>> {
     const mock = await this.getMockClass(mutation, 'mutation');
     if (mock) {
-      const response = mock.handle(params);
+      const response = await mock.handle(params);
       if (!response.data) {
         throw new Error(JSON.stringify(response.errors));
       }
@@ -85,12 +95,17 @@ export default class ApolloServiceMock implements ApolloServiceInterface {
     // ...
   }
 
+  private getNameOfEndpoint(gql: string, action: string): string | null {
+    const regex: RegExp = action === 'mutation' ? /mutation (.*)\(/ : /query (.*)\(/;
+    const match = gql.match(regex);
+
+    return match ? match[1] : null;
+  }
+
   private async getMockClass(gql: string, action: string): Promise<MockInterface | null> {
     const { hFirstToLower } = await import('@/utils/helpers');
     const regex: RegExp = action === 'mutation' ? /mutation (.*)\(/ : /query (.*)\(/;
     const match = gql.match(regex);
-
-    console.log(match);
 
     if (match) {
       const mock = (await import(`@/utils/mocks/${hFirstToLower(match[1])}Mock`)).default;

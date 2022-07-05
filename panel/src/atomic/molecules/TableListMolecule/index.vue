@@ -33,7 +33,7 @@
         <div :key="`dataSettings_${index}`"
           class="TableListMolecule__settingsItem"
           v-for="(row, index) in dataTable">
-          <CheckboxAtom v-if="row.canDelete"
+          <CheckboxAtom v-if="row.can_delete"
             v-model="row.selected" />
         </div>
       </div>
@@ -85,7 +85,7 @@
           <div class="TableListMolecule__action TableListMolecule__action--update">
             <IconAtom class="TableListMolecule__actionIcon" name="edit" />
           </div>
-          <div v-if="row.canDelete"
+          <div v-if="row.can_delete"
             @click="$emit('handleDeleteElements', [row.uuid])"
             class="TableListMolecule__action TableListMolecule__action--delete">
             <IconAtom class="TableListMolecule__actionIcon" name="delete" />

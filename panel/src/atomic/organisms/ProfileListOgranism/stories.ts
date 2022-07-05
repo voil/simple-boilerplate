@@ -29,7 +29,7 @@ export default {
 /**
  * Export storie for component.
  */
-export const ProfileListOgranism = (args: ComponentPropsType) => ({
+export const ProfileListOrganism = (args: ComponentPropsType) => ({
     components: { ProfileListOgranismComponent },
     setup() {
       return { args };
@@ -39,4 +39,4 @@ export const ProfileListOgranism = (args: ComponentPropsType) => ({
     `,
 });
 
-ProfileListOgranism.args = {};
+ProfileListOrganism.args = {};

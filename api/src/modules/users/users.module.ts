@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Users } from './entities/users.entity';
 import { ConfigModule } from '../core/config.module';
 import { Profiles } from './entities/profiles.entity';
+import {CACHE_MANAGER, Inject } from '@nestjs/common';
 import { UsersService } from './entities/users.service';
 import { UsersResolver } from './graphql/users.resolver';
 import { ProfilesService } from './entities/profiles.service';
@@ -16,7 +17,6 @@ import { UsersSessions } from './entities/users.sessions.entity';
 import { UsersAccounts } from './entities/users.accounts.entity';
 import * as redisStore from 'cache-manager-redis-store';
 import { UsersAccountsService } from './entities/users.accounts.service';
-import {CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 
 /**
  * UsersModule

@@ -1,11 +1,5 @@
 import { ParamsGraphQLInterface, MockInterface } from '@/utils/interfaces';
-
-/**
- * @var {MockUserParamsType}
- */
-type MockProfileListParamsType = {
-
-}
+import dataMock from '@/utils/mocks/data/profilesData';
 
 /**
  * ProfileListMock
@@ -19,9 +13,27 @@ class ProfileListMock implements MockInterface {
    * @param {ParamsGraphQLInterface} params
    * @returns {Any}
    */
-  public handle(params: ParamsGraphQLInterface): any {
-    console.log('sdf');
-    return [];
+  public async handle(params: ParamsGraphQLInterface): Promise<any> {
+    let data = dataMock.value;
+    const total = data.length;
+
+    if (params.params.order) {
+      const { orderBy } = await import('lodash');
+      data = orderBy(data, [params.params.order.field], [params.params.order.type.toLowerCase()]);
+    }
+
+    const limit = parseInt(params.params.offset.limit.replace('L', ''), 10);
+    const currentPage = (params.params.offset.page - 1) * limit;
+    data = data.slice(currentPage, limit * params.params.offset.page);
+
+    return {
+      data: {
+        profilesList: {
+          total: total,
+          records: data,
+        },
+      }
+    };
   }
 }
 

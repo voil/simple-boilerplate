@@ -25,6 +25,11 @@ interface NotificationServiceInterface {
  */
 class NotificationService implements NotificationServiceInterface {
   /**
+   * @var {Number}
+   */
+  #delayTimeForShowNotification: number = 3000;
+
+  /**
    * Method to open success notification.
    * @param {PropsType} props
    */
@@ -55,6 +60,7 @@ class NotificationService implements NotificationServiceInterface {
 
     wrapper.appendChild(instance.$el);
     document.body.appendChild(wrapper);
+    setTimeout(() => this.#removeOldInstance(), this.#delayTimeForShowNotification);
   }
 
   /**
@@ -94,6 +100,7 @@ class NotificationService implements NotificationServiceInterface {
     wrapper.style.position = 'absolute';
     wrapper.style.top = '20px';
     wrapper.style.right = '20px';
+    wrapper.style.zIndex = '1000';
 
     return wrapper;
   }
