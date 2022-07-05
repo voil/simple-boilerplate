@@ -29,7 +29,7 @@ export default {
 /**
  * Export storie for component.
  */
-export const TeamsListOgranism = (args: ComponentPropsType) => ({
+export const TeamsListOrganism = (args: ComponentPropsType) => ({
     components: { TeamsListOgranismComponent },
     setup() {
       return { args };
@@ -39,4 +39,4 @@ export const TeamsListOgranism = (args: ComponentPropsType) => ({
     `,
 });
 
-TeamsListOgranism.args = {};
+TeamsListOrganism.args = {};
