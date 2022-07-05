@@ -12,7 +12,7 @@ interface ApolloServiceInterface {
     query: string,
     params?: ParamsGraphQLInterface,
     isCacheDisactive?: boolean,
-  ): Promise<FetchResult<any, Record<string, any>, Record<string, any>>> 
+  ): Promise<FetchResult<any, Record<string, any>, Record<string, any>>>
   mutation(
     mutation: string,
     params?: ParamsGraphQLInterface

@@ -209,24 +209,29 @@ export class TeamsResolver extends BaseResolver {
     @Args('params') params: DeleteTeamArgs,
     @CurrentLoggedUser() loggedUser: Users,
   ): Promise<ResponseEndpointInterface> {
-    const { record, cache } = await this.getTeamRecordByUuid(
-      params.uuid,
-      loggedUser,
-    );
-
-    if (record.users.length > 0) {
-      throw new CustomException(`hasAssigned`);
-    }
-
-    this.teamsService.deleteTeam(record.uuid);
-    const records = cache.filter(team => team.uuid != params.uuid);
-    this.cacheManager.set(this.getCacheName(loggedUser), records, null);
-
-    this.publishSubscription(records, loggedUser);
+    params.records.forEach(async (uuid: string) => {
+      try {
+        const { record, cache } = await this.getTeamRecordByUuid(
+          uuid,
+          loggedUser,
+        );
+    
+        if (record.users.length > 0) {
+          throw new CustomException(`hasAssigned`);
+        }
+    
+        this.teamsService.deleteTeam(record.uuid);
+        const records = cache.filter(team => team.uuid != uuid);
+        this.cacheManager.set(this.getCacheName(loggedUser), records, null);
+    
+        this.publishSubscription(records, loggedUser);
+      } catch(error) {
+        // ...
+      }
+    });
 
     return {
-      total: 1,
-      record,
+      total: params.records.length,
     };
   }
 

@@ -1,4 +1,4 @@
-import PrivilagesPageComponent from './index.vue';
+import ProfilesPageComponent from './index.vue';
 
 /**
  * @type ComponentPropsType
@@ -9,16 +9,16 @@ type ComponentPropsType = {};
  * Export default component.
  */
 export default {
-  component: PrivilagesPageComponent,
-  title: 'UI/Pages/Privilages Page',
+  component: ProfilesPageComponent,
+  title: 'UI/Pages/Profiles Page',
   parameters: {
     docs: {
       description: {
-        component: 'Privilages page component.',
+        component: 'Profiles page component.',
       },
       source: {
         code: `
-          <PrivilagesPage />
+          <ProfilesPage />
         `,
       },
     },
@@ -28,12 +28,12 @@ export default {
 /**
  * Export storie for component.
  */
-export const PrivilagesPage = (args: ComponentPropsType) => ({
-    components: { PrivilagesPageComponent },
+export const ProfilesPage = (args: ComponentPropsType) => ({
+    components: { ProfilesPageComponent },
     setup() {
       return { args };
     },
     template: `
-      <PrivilagesPageComponent v-bind="args" />
+      <ProfilesPageComponent v-bind="args" />
     `,
 });

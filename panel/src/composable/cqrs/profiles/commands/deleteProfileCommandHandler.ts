@@ -4,12 +4,12 @@ import ProfilesListStateMachine from '@/composable/store/machines/profilesListSt
 import { DeleteProfileCommandInterface } from './DeleteProfileCommand';
 
 /**
- * LoginToPlatformCommandHandler
- * Handler to execute login to platform command.
+ * DeleteProfileCommandHandler
+ * Handler to execute delete profile to platform command.
  *
  * @implements {CommandHandlerInterface}
  */
-export default class LoginToPlatformCommandHandler implements CommandHandlerInterface {
+export default class DeleteProfileCommandHandler implements CommandHandlerInterface {
   /**
    * @var {String}
    */

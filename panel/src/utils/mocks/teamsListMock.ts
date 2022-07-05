@@ -1,15 +1,15 @@
 import { ParamsGraphQLInterface, MockInterface } from '@/utils/interfaces';
-import dataMock from '@/utils/mocks/data/profilesData';
+import dataMock from '@/utils/mocks/data/teamsData';
 
 /**
- * ProfileListMock
- * Profile list mock endpoints.
+ * TeamsListMock
+ * Teams list mock endpoints.
  *
  * @implements MockInterface
  */
-class ProfileListMock implements MockInterface {
+class TeamsListMock implements MockInterface {
   /**
-   * Method to handle mock login user.
+   * Method to handle mock teams list.
    * @param {ParamsGraphQLInterface} params
    * @returns {Any}
    */
@@ -28,7 +28,7 @@ class ProfileListMock implements MockInterface {
 
     return {
       data: {
-        profilesList: {
+        teamsList: {
           total,
           records: data,
         },
@@ -37,4 +37,4 @@ class ProfileListMock implements MockInterface {
   }
 }
 
-export default new ProfileListMock();
+export default new TeamsListMock();

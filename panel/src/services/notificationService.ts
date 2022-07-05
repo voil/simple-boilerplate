@@ -27,7 +27,7 @@ class NotificationService implements NotificationServiceInterface {
   /**
    * @var {Number}
    */
-  #delayTimeForShowNotification: number = 3000;
+  #delayTimeForShowNotification = 3000;
 
   /**
    * Method to open success notification.

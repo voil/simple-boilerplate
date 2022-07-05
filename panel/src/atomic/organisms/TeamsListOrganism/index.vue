@@ -1,17 +1,17 @@
 <template>
-  <div class="ProfilesListOrganism">
+  <div class="TeamsListOrganism">
     <SpinnerAtom :is-visible="curretntStateList === 'pending'">
       <TableListMolecule :columns-table="columnsTable"
-        :data-table="profilesListFromStore.records"
+        :data-table="teamsListFromStore.records"
         @handleSortList="handleSortList"
         @handleDeleteElements="handleDeleteElements"/>
-      <div class="ProfilesListOrganism__pagination">
-        <PageListSizerAtom v-if="profilesListFromStore.total > 10"
+      <div class="TeamsListOrganism__pagination">
+        <PageListSizerAtom v-if="teamsListFromStore.total > 10"
           @handleChangeSizeList="handleChangeLimitOffsetList" />
-        <PaginationListAtom v-if="profilesListFromStore.total > offset.limit"
+        <PaginationListAtom v-if="teamsListFromStore.total > offset.limit"
           :current-page="offset.page"
           :page-size="offset.limit"
-          :total-count="profilesListFromStore.total"
+          :total-count="teamsListFromStore.total"
           @handleChangePage="handleChangePage"/>
       </div>
     </SpinnerAtom>

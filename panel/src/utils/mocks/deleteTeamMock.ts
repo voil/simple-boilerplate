@@ -1,24 +1,24 @@
 import { ParamsGraphQLInterface, MockInterface } from '@/utils/interfaces';
-import dataMock, { ProfileType } from '@/utils/mocks/data/profilesData';
+import dataMock, { TeamType } from '@/utils/mocks/data/teamsData';
 
 /**
- * DeleteProfileMock
- * Profile delete mock endpoints.
+ * DeleteTeamsMock
+ * Team delete mock endpoints.
  *
  * @implements MockInterface
  */
-class DeleteProfileMock implements MockInterface {
+class DeleteTeamsMock implements MockInterface {
   /**
    * Method to handle mock login user.
    * @param {ParamsGraphQLInterface} params
    * @returns {Any}
    */
   public async handle(params: ParamsGraphQLInterface): Promise<any> {
-    dataMock.value = dataMock.value.filter((record: ProfileType) => !params.params
+    dataMock.value = dataMock.value.filter((record: TeamType) => !params.params
       .records.includes(record.uuid));
     return {
       data: {
-        deleteProfile: {
+        deleteTeam: {
           data: {
             total: params.params.records.length,
             record: params.params.records,
@@ -29,4 +29,4 @@ class DeleteProfileMock implements MockInterface {
   }
 }
 
-export default new DeleteProfileMock();
+export default new DeleteTeamsMock();

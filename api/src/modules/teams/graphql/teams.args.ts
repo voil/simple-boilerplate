@@ -1,5 +1,6 @@
 import { Field, InputType } from '@nestjs/graphql';
 import {
+  IsArray,
   IsUUID,
   IsString,
   MinLength,
@@ -79,9 +80,9 @@ export class UpdateTeamArgs {
  */
 @InputType()
 export class DeleteTeamArgs {
-  @Field({ nullable: false })
-  @IsUUID()
-  uuid: string;
+  @Field(() => [String], { nullable: false })
+  @IsArray()
+  records: Array<String>;
 }
 
 /**
