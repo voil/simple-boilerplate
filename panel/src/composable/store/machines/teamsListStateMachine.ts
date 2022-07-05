@@ -2,17 +2,17 @@ import Store from '@/composable/store';
 import CommandBus from '@/services/cqrs/commandBus';
 import { OffsetType, SortOrderType } from '@/utils/types';
 import QueryDispatcher from '@/services/cqrs/queryDispatcher';
-import GetProfilesList from '@/composable/cqrs/profiles/queries/getProfilesListQuery';
-import { ProfilesType } from '@/composable/store/modules/profilesStore';
-import DeleteProfileCommand from '@/composable/cqrs/profiles/commands/deleteProfileCommand';
+import GetTeamsList from '@/composable/cqrs/teams/queries/getTeamsListQuery';
+import { TeamsType } from '@/composable/store/modules/teamsStore';
+import DeleteTeamCommand from '@/composable/cqrs/teams/commands/deleteTeamCommand';
 import StateMachineService, { PayloadParametersType } from '@/services/stateMachineService';
 
 const machine = new StateMachineService('default');
 
 /**
- * @var {ProfilesListParams}
+ * @var {TeamsListParams}
  */
-export type ProfilesListParams = {
+export type TeamsListParams = {
   offset: OffsetType;
   order?: SortOrderType;
 }
@@ -27,7 +27,7 @@ machine.addState('default');
  */
 machine.addState<string[]>('pendingDelete',
   async (payload: PayloadParametersType<string[]>) => {
-    await CommandBus.handle(new DeleteProfileCommand(payload as string[]));
+    await CommandBus.handle(new DeleteTeamCommand(payload as string[]));
   });
 
 /**
@@ -38,7 +38,7 @@ machine.addState('successDelete', async () => {
   const notificiationService = (await import('@/services/notificationService')).default;
   notificiationService.success({
     title: 'Success delete',
-    description: 'Profile successfully deleted',
+    description: 'Team successfully deleted',
   });
 });
 
@@ -49,31 +49,32 @@ machine.addState('errorDelete', async () => {
   const notificiationService = (await import('@/services/notificationService')).default;
   notificiationService.error({
     title: 'Error delete',
-    description: 'Profile error deleted',
+    description: 'Team error deleted',
   });
 });
 
 /**
  * State for pending and submit form (login user to platform).
  */
-machine.addState<ProfilesListParams>('pending', async () => {
-  const response: ProfilesType | null = await QueryDispatcher
-    .execute<ProfilesType | null>(new GetProfilesList({
+machine.addState<TeamsListParams>('pending', async () => {
+  const response: TeamsType | null = await QueryDispatcher
+    .execute<TeamsType | null>(new GetTeamsList({
       offset: {
-        ...Store.get('profiles')?.offset,
-        limit: `L${Store.get('profiles')?.offset.limit}`,
+        ...Store.get('teams')?.offset,
+        limit: `L${Store.get('teams')?.offset.limit}`,
       },
-      order: Store.get('profiles')?.order,
+      order: Store.get('teams')?.order,
     }));
 
   if (response) {
     response.records = response.records.map((record) => {
       const recordItem = record;
       recordItem.selected = false;
+      recordItem.can_delete = recordItem.users.length === 0;
       return recordItem;
     });
   }
-  Store.commit('profiles', response);
+  Store.commit('teams', response);
   machine.setState('default');
 });
 

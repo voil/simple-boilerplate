@@ -3,23 +3,23 @@ import Command from '@/services/cqrs/command';
 /**
  * @interface {LoginToPlatformCommandInterface}
  */
-export interface DeleteProfileCommandInterface {
+export interface DeleteTeamCommandInterface {
   records: string[];
 }
 
 /**
- * DeleteProfileCommand
- * Login to platform command.
+ * DeleteTeamCommand
+ * Delete team command.
  *
  * @extends {Command}
- * @implements {DeleteProfileCommandInterface}
+ * @implements {DeleteTeamCommandInterface}
  */
-export default class DeleteProfileCommand extends Command
-  implements DeleteProfileCommandInterface {
+export default class DeleteTeamCommand extends Command
+  implements DeleteTeamCommandInterface {
     /**
      * @var {String}
      */
-    public handler = 'profiles';
+    public handler = 'teams';
 
     /**
      * @var {String}

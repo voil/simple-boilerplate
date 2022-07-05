@@ -14,14 +14,15 @@ class DeleteProfileMock implements MockInterface {
    * @returns {Any}
    */
   public async handle(params: ParamsGraphQLInterface): Promise<any> {
-    dataMock.value = dataMock.value.filter((record: ProfileType) => !params.params.records.includes(record.uuid));
+    dataMock.value = dataMock.value.filter((record: ProfileType) => !params.params
+      .records.includes(record.uuid));
     return {
       data: {
         deleteProfile: {
           data: {
             total: params.params.records.length,
             record: params.params.records,
-          }
+          },
         },
       },
     };

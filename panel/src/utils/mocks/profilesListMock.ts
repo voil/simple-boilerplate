@@ -29,10 +29,10 @@ class ProfileListMock implements MockInterface {
     return {
       data: {
         profilesList: {
-          total: total,
+          total,
           records: data,
         },
-      }
+      },
     };
   }
 }
