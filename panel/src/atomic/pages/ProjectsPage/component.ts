@@ -15,5 +15,6 @@ export default defineComponent({
     HeaderPageAtom: defineAsyncComponent(() => import('@/atomic/atoms/HeaderPageAtom/index.vue')),
     PanelTemplate: defineAsyncComponent(() => import('@/atomic/templates/PanelTemplate/index.vue')),
     UserLoggedOrganism: defineAsyncComponent(() => import('@/atomic/organisms/UserLoggedOrganism/index.vue')),
+    ProjectsListOrganism: defineAsyncComponent(() => import('@/atomic/organisms/ProjectsListOrganism/index.vue')),
   },
 });
