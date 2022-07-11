@@ -107,7 +107,7 @@ export default defineComponent({
     };
 
     /**
-     * Function to get profiles list.
+     * Function to get list.
      */
     function getTeamsList(): void {
       TeamsListStateMachine.setState('pending');
